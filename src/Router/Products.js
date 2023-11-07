@@ -1,6 +1,9 @@
+import FetchApi from "../Products/FetchApi/FetchApi";
+
 const Products = () => (
     <div>
-     Products
+     Products:
+     <p><FetchApi /></p>
     </div>
   )
   

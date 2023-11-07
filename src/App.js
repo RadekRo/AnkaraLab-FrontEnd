@@ -1,11 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import HomePage from './Router/HomePage';
 import RouterReact from './Router/Router';
+import Header from './Header/Header';
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <RouterReact />
     </div>
   );

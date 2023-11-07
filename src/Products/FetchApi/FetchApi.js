@@ -18,7 +18,10 @@ const FetchApi = () => {
 return (<div>
       <h1>FetchApi</h1>
       {data && data.map((item) => <Product product={item} key={item.id} />)}
-
+      {/* <Product product={data} />
+      {console.log(data)}
+      {console.log(data.length)} */}
+      {/* TO DO trzeba dodać obsługę pojedynczego jsona, bo przychodzi tablica jsonów a w przypadku jednego nie ma tablicy */}
     </div>)
   }
 

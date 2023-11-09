@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import RouterReact from './Router/Router';
-import Header from './Header/Header';
+import Header from './Shared/Header/Header'
 
 function App() {
   return (

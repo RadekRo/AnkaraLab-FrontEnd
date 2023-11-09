@@ -1,6 +1,6 @@
 # AnkaraLab-FrontEnd
 
-FrontEnd commercial application to be used under: https://www.ankaralab.com
+FrontEnd commercial application to be used under: https://www.ankaralab.com  
 Created using React with HTML and CSS elements.
 
 ## About

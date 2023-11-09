@@ -5,7 +5,7 @@ import Product from '../Product/Product'
 const FetchApi = () => {
   const { id } = useParams()
   const [product, setProduct] = useState(null)
-  const [data , setData] = useState([])
+  const [data, setData] = useState([])
 
   useEffect(() => {
     async function fetchData() {

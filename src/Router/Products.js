@@ -1,12 +1,10 @@
-import CategoryApi from "../Products/FetchApi/CategoryApi";
+import FetchApi from "../Products/FetchApi/FetchApi";
 
 const Products = () => (
-  <div>
-    Products:
-    <p>
-      <CategoryApi />
-    </p>
-  </div>
-);
-
-export default Products;
+    <div>
+     Products:
+     <p><FetchApi /></p>
+    </div>
+  )
+  
+  export default Products;

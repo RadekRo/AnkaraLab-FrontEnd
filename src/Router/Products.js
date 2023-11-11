@@ -3,7 +3,7 @@ import ProductsAPI from '../Products/ProductsAPI/ProductsAPI'
 const Products = () => (
     <div>
      Products:
-     <ProductsAPI />
+     <ProductsAPI categoryId="3" />
     </div>
   )
   

@@ -13,7 +13,7 @@ const HomePage = () => (
         <Route path={`/products`} element={<Products/>}/>
         <Route path={`/basket`} element={<Basket/>}/>
      </Routes>
-    </div>
+   </div>
   )
   
   export default HomePage;

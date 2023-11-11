@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useParams } from "react-router-dom"
 import Product from '../Product/Product'
 
-const CategoryApi = () => {
+const ProductsApi = () => {
 
   const [data, setData] = useState([])
   const [product, setProduct] = useState(null)

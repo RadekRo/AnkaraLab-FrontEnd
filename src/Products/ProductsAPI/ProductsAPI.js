@@ -8,7 +8,7 @@ const ProductsAPI = () => {
 
     useEffect(() => {
       async function fetchData() {
-        const response = await fetch('https://localhost:7162/api/products/byCategory/1')
+        const response = await fetch('https://localhost:7162/api/products/byCategory/3')
         const data = await response.json()
         setData(data)
       }
@@ -19,9 +19,8 @@ const ProductsAPI = () => {
   
   
   return (<div>
-        <h1>FetchApi</h1>
+        FetchApi
         {data && data.map((item) => <Product product={item} key={item.id} />)}
-        
       </div>)
 }
 

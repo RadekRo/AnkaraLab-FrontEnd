@@ -9,7 +9,7 @@ const RouterReact = () => (
   <div>
   <Router>
     <Routes>
-      <Route path="/" element={<Homepage />} />
+      <Route path="/*" element={<Homepage />} />
       <Route path="/basket" element={<Basket />} />
       <Route path="/products" element={<Products />} />
       {/* <Route path="/products/:id" component={FetchApi} element={<Products />} />

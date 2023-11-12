@@ -1,6 +1,6 @@
 import { Link, Route, Routes } from "react-router-dom";  
-import Basket from "./Basket";
-import Products from "./Products";
+import Basket from "../Router/Basket";
+import Products from "../Router/Products";
 
 const HomePage = () => (
     <div>

@@ -1,8 +1,9 @@
+import "./HomePage.css";
+
 const HomePage = () => (
     <div>
-     Home page<br/>
-     <a href="/products/1">Odbitki fotograficzne</a><br/>
-     <a href="/products/3">Gadżety</a><br/>
+      <a href="/products/1" className="panel">Odbitki fotograficzne</a>
+      <a href="/products/3" className="panel">Gadżety</a>
    </div>
   )
   

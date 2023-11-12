@@ -1,12 +1,24 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './Shared/Header/Header';
+import HomePage from './HomePage/HomePage';
+import NotFound from './Router/NotFound';
+import Basket from './Router/Basket';
+import Products from './Router/Products';
 import './App.css';
-import Router from './Router/Router';
-import Header from './Shared/Header/Header'
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Router />
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/basket" element={<Basket />} />
+          <Route path="/products/:categoryId" element={<Products />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

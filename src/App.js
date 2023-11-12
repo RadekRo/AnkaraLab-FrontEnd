@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Shared/Header/Header';
 import HomePage from './HomePage/HomePage';
-import NotFound from './Router/NotFound';
-import Basket from './Router/Basket';
-import Products from './Router/Products';
+import NotFound from './Shared/NotFound/NotFound';
+import Basket from './Basket/Basket';
+import Products from './Products/Products';
 import './App.css';
 
 function App() {

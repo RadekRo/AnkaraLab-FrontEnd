@@ -1,4 +1,4 @@
-import ProductsAPI from '../Products/ProductsAPI/ProductsAPI'
+import ProductsAPI from './ProductsAPI/ProductsAPI'
 import { useParams } from 'react-router-dom';
 const Products = () => {
   const { categoryId } = useParams();

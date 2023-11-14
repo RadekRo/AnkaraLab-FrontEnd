@@ -1,6 +1,30 @@
 import { Link } from "react-router-dom";
 
-const Product = (props) => (
+const Product = (props) => 
+{
+  const AddToBasket = (event) => 
+  {
+    event.preventDefault();
+    console.log("Added to basket")
+    fetch('https://localhost:7162/api/products/api/products/new',
+    {
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(
+        {
+        "id": 11,
+        "size": "big",
+        "description": "nice",
+        "price": 120,
+        "deadline": 0,
+        "isAvaliable": true,
+        "photoHeight": 0,
+        "photoWidth": 0,
+        "categoryId": 1
+      })
+    })
+  }
+  return (
     <div>
       <div>
         <h1>Product:</h1>
@@ -9,8 +33,8 @@ const Product = (props) => (
     <div>{props.product.name}</div>
     <div>{props.product.price}</div>
     <div>{props.product.description}</div>
-    <div><button><Link to = {`../basket`}>Dodaj do koszyka</Link></button></div>
+    <div><button onClick={AddToBasket}><Link to = {`../basket`}>Dodaj do koszyka</Link></button></div>
     </div>
   )
-  
+}
   export default Product;

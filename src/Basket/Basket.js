@@ -4,4 +4,4 @@ const Basket = () => (
     </div>
   )
   
-  export default Basket;
+  export default Basket

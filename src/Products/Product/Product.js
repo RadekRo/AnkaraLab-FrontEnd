@@ -12,10 +12,10 @@ const Product = (props) =>
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(
         {
-        "id": 11,
+        "id": 12,
         "size": "big",
         "description": "nice",
-        "price": 120,
+        "price": props.product.categoryId,
         "deadline": 0,
         "isAvaliable": true,
         "photoHeight": 0,

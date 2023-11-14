@@ -1,11 +1,12 @@
-import React, {useState, useEffect } from 'react'
-import { useParams  } from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
+import { useParams } from "react-router-dom"
 import Product from '../Product/Product'
 
 const FetchApi = () => {
-  const { id } = useParams()
-  const [product, setProduct] = useState(null)
+
   const [data, setData] = useState([])
+  const [product, setProduct] = useState(null)
+  const { id } = useParams()
 
   useEffect(() => {
     async function fetchData() {

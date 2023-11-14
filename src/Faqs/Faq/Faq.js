@@ -3,8 +3,8 @@ const Faq = (props) => (
     <div>
       <h1></h1>
     </div>
-  <div>Faq nr: {props.faq.id}</div>
-  <div>Pytanie: <b>{props.faq.question}</b></div>
+  <div className="question">Faq nr: {props.faq.id}</div>
+  <div className="answer">Pytanie: {props.faq.question}</div>
   <div>Odpowiedź: {props.faq.answer}</div>
   </div>
 )

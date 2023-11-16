@@ -29,7 +29,7 @@ const Product = (props) =>
     <div>{props.product.name}</div>
     <div>{props.product.price}</div>
     <div>{props.product.description}</div>
-    <div><button onClick={AddToBasket}><Link to = {`../basket`}>Dodaj do koszyka</Link></button></div>
+    <div><button onClick={AddToBasket}><Link to = {`../basket/`}>Dodaj do koszyka</Link></button></div>
     </div>
   )
 }

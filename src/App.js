@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Shared/Header/Header';
 import HomePage from './HomePage/HomePage';
@@ -9,6 +9,19 @@ import Faqs from './Faqs/Faqs';
 import './App.css';
 
 function App() {
+  const [clientId, setClientId] = useState(null);
+
+  useEffect(() => {
+    
+    const generateRandomClientId = () => {
+      return Math.floor(Math.random() * 1000) + 1;
+    };
+    
+    setClientId(generateRandomClientId());
+  }, []); 
+
+  console.log(clientId)
+  
   return (
     <div className="App">
       <Router>

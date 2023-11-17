@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 const Product = (props) => 
 {
-  const basketId  = 12;
   const AddToBasket = (event) => 
   {
     event.preventDefault();
@@ -14,7 +13,7 @@ const Product = (props) =>
       body: JSON.stringify(
         {
         "id": props.ProductId,
-        "ClientId": 33,
+        "ClientId": 1,
         "ProductId": props.product.categoryId,
         "Quantity": 5,
         "OrderId": props.product.name
@@ -30,7 +29,7 @@ const Product = (props) =>
     <div>{props.product.name}</div>
     <div>{props.product.price}</div>
     <div>{props.product.description}</div>
-    <div><button onClick={AddToBasket}><Link to = {`../basket/${basketId}`}>Dodaj do koszyka</Link></button></div>
+    <div><button onClick={AddToBasket}><Link to = {`../basket`}>Dodaj do koszyka</Link></button></div>
     </div>
   )
 }

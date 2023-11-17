@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from "react-router-dom"
-import Basket from '../Basket/Basket'
+import Basket from '../Item/Item'
 
 const BasketsApi = () => {
 

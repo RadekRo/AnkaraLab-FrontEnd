@@ -1,4 +1,4 @@
-import BasketsApi from './BasketsApi/BasketsApi';
+import BasketsApi from './BasketApi/BasketsApi';
 import { useParams } from 'react-router-dom';
 
 const Baskets = () => {

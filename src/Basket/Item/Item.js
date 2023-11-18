@@ -1,7 +1,7 @@
 import React from 'react'
-import "./Basket.css";
+import "./Item.css";
 
-const Basket = (props) => (
+const Basket = props => (
   <div>
   <div>
     <h1></h1>

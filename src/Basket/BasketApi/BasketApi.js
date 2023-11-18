@@ -6,19 +6,13 @@ const BasketsApi = () => {
 
   const [data, setData] = useState([])
   const [basket, setProduct] = useState(null)
-  const { id } = useParams()
+  const { id } = useParams() 
 
   useEffect(() => {
-    async function fetchData() {
-      if(!id) {
+    async function fetchData() { 
         const response = await fetch(`https://localhost:7162/api/basket/`)
         const data = await response.json()
         setData(data)
-    } else {
-        const response = await fetch(`https://localhost:7162/api/basket/${id}`)
-        const data = await response.json()
-        setProduct(data)
-      }
     }
 
     fetchData()

@@ -1,13 +1,14 @@
-import BasketsApi from './BasketApi/BasketsApi';
+import BasketApi from './BasketApi/BasketApi';
 import { useParams } from 'react-router-dom';
 
-const Baskets = () => {
+const Basket = props => {
   const { } = useParams();
+  console.log("Basket: " + props.clientId)
   return (  <div>
      Koszyk:
-     <BasketsApi />
+     <BasketApi />
     </div>
   );
 };
   
-  export default Baskets;
+  export default Basket;

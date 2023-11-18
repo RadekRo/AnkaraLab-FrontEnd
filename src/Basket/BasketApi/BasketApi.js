@@ -1,36 +1,29 @@
 import React, {useState, useEffect} from 'react'
-import { useParams } from "react-router-dom"
 import Basket from '../Item/Item'
 
-const BasketsApi = () => {
+const BasketsApi = props => {
 
   const [data, setData] = useState([])
-  const [basket, setProduct] = useState(null)
-  const { id } = useParams() 
 
   useEffect(() => {
     async function fetchData() { 
-        const response = await fetch(`https://localhost:7162/api/basket/`)
+        const response = await fetch(`https://localhost:7162/api/basket/${props.clientId}`)
         const data = await response.json()
         setData(data)
     }
 
     fetchData()
-  }, [id])
+  }, [props.clientId])
 
   return (
     <div>
       <h1>Koszyk</h1>
-      {id ? (
-        basket ? (
-          <Basket basket={basket} />
-        ) : (
-          <p>Loading...</p>
-        )
-      ) : (
+      {data.length > 0 ? (
         data.map((item) => (
           <Basket key={item.id} basket={item} />
         ))
+      ) : (
+        <p>Twój koszyk jest pusty ziomuś!</p>
       )}
     </div>
   );

@@ -1,12 +1,10 @@
 import BasketApi from './BasketApi/BasketApi';
-import { useParams } from 'react-router-dom';
 
 const Basket = props => {
-  const { } = useParams();
-  console.log("Basket: " + props.clientId)
+  console.log(props.clientId)
   return (  <div>
      Koszyk:
-     <BasketApi />
+     <BasketApi clientId={props.clientId} />
     </div>
   );
 };

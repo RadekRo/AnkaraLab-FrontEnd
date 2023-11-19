@@ -1,15 +1,19 @@
-import { Link } from "react-router-dom";  
+import { Link } from "react-router-dom";
 import "./Header.css";
+// import "./Button.css";
 
 const Header = () => (
-    <div className="Header">
-     This is our header
-     <div>
-     <Link to = {`/`}>Home page</Link><br/>
-     <Link to = {`/basket`}>Basket</Link><br/>
-     <Link to = {`/faq`}>Faq</Link><br/>
-   </div>
+  <div className="Header">
+    AnkaraLab.com
+    <div>
+      <Link to={`/`}>Home page</Link>
+      <br />
+      <Link to={`/basket`}>Basket</Link>
+      <br />
+      <Link to={`/faq`}>Faq</Link>
+      <br />
     </div>
-  )
-  
-  export default Header;
+  </div>
+);
+
+export default Header;

@@ -1,4 +1,21 @@
-.Header 
-{
-background-color: blue;
+.Header {
+  background-image: url("./header.jpg");
+  align-content: center;
+  color: azure;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  text-align: center;
+  font-size: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 50vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
 }
+
+/* h1 {
+  font-size: 28px;
+  text-align: center;
+} */

@@ -22,11 +22,8 @@ const Product = props =>
       }
   
       console.log('Added to basket successfully');
-      // Additional logic if needed after successful addition to the basket
     } catch (error) {
       console.error('Error adding to basket:', error.message);
-      // Show a user-friendly message or retry the request
-      // Handle the error gracefully
     }
   };
   

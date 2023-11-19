@@ -3,25 +3,30 @@ import { Link } from "react-router-dom";
 
 const Product = props => 
 {
-  const AddToBasket = (event) => 
-  {
+  const AddToBasket = async (event) => {
     event.preventDefault();
-    console.log("Added to basket")
-    fetch('https://localhost:7162/api/basket',
-    {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(
-        {
-        "id": props.ProductId,
-        "ClientId": 3,
-        "ProductId": props.product.categoryId,
-        "Quantity": 5,
-        "OrderId": props.product.name
-      })
-    })
-    
-  }
+    try {
+      const response = await fetch('https://localhost:7162/api/basket', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ClientId: props.clientId,
+          ProductId: props.product.productId,
+          Quantity: 1,
+          OrderId: 0,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to add the product to the basket');
+      }
+  
+      console.log('Added to basket successfully');
+    } catch (error) {
+      console.error('Error adding to basket:', error.message);
+    }
+  };
+  
   return (
     <div>
       <div>

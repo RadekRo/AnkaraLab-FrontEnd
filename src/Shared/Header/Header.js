@@ -3,8 +3,7 @@ import "./Header.css";
 
 const Header = () => (
     <div className="Header">
-     This is our header
-     <div>
+     <div> 
      <Link to = {`/`}>Home page</Link><br/>
      <Link to = {`/basket`}>Basket</Link><br/>
      <Link to = {`/faq`}>Faq</Link><br/>

@@ -19,8 +19,6 @@ function App() {
     }
     setClientId(storedClientId);
   }, []);
-
-  console.log("App.js: " + sessionStorage.getItem('clientId'));
   
   return (
     <div className="App">

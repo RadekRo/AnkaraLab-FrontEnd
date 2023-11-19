@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Item from '../Item/Item'
+import './BasketApi.css'
 
 const BasketsApi = (props) => {
   const [data, setData] = useState([]);
@@ -17,19 +18,31 @@ const BasketsApi = (props) => {
       setData([]);
     }
   };
-
-  useEffect(() => { fetchBasketData(); });
+  
+  useEffect(() => { fetchBasketData(); }, []);
 
   return (
-    <div>
-      <h1>Koszyk</h1>
+    <div className="BasketApi">
+      <table>
+      <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>cena</th>
+            <th>sztuk</th>
+            <th>wartość</th>
+          </tr>
+      </thead>
+      <tbody>
       {data.length > 0 ? (
         data.map((item) => (
-          <Item key={item.id} basket={item} />
+          <Item key={item.id} item={item} />
         ))
       ) : (
-        <p>Twój koszyk jest pusty ziomuś!</p>
+        <tr><td>Twój koszyk jest pusty ziomuś!</td></tr>
       )}
+      </tbody>
+    </table>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const Product = props => 
 {
+   console.log(props.product)
   const AddToBasket = async (event) => {
     event.preventDefault();
     try {
@@ -11,8 +12,8 @@ const Product = props =>
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ClientId: props.clientId,
-          ProductId: props.product.productId,
-          Quantity: 1,
+          ProductId: props.product.id,
+          Quantity: 0,
           OrderId: 0,
         }),
       });

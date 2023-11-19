@@ -4,7 +4,7 @@ import "./Item.css";
 const Basket = props => (
   <div>
   <div>
-    <h1></h1>
+    <h1>Item</h1>
   </div>
 <div className="default">Id koszyka: {props.basket.id}</div>
 <div className="default">Id klienta: {props.basket.clientId}</div>

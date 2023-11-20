@@ -5,8 +5,10 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 const BasketsApi = (props) => {
   const [data, setData] = useState([]);
+
   const fetchBasketData = async () => {
     try {
+      await new Promise((resolve) => setTimeout(resolve, 500));
       const response = await fetch(`https://localhost:7162/api/basket/${props.clientId}`);
       if (!response.ok) {
         throw new Error('Failed to fetch basket data');
@@ -24,7 +26,7 @@ const BasketsApi = (props) => {
       fetchBasketData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.clientId]);
+    }, []);
 
   return (
       <Container>

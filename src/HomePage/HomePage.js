@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./HomePage.css";
-import Button from "../Shared/Buttons/Button";
+import Banner from "./Banner/Banner";
 
 const images = [
   {
@@ -37,7 +37,8 @@ const images = [
 ];
 const HomePage = () => {
   return (
-    <div className="homepage-container">
+    <div>
+      <Banner />
       {images.map((image) => (
         <Link to={image.link}>
           <img src={image.path} alt={image.alt} />

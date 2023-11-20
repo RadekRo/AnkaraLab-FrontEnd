@@ -13,9 +13,7 @@ const ProductsAPI = props => {
   
       fetchData()
     }, [props.categoryId])
-    console.log("ProductsAPI: " + props.clientId)
   return (<div>
-        FetchApi
         {data && data.map((item) => <Product product={item} key={item.id} clientId={props.clientId} />)}
       </div>)
 }

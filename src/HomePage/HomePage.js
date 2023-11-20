@@ -1,4 +1,5 @@
 import "./HomePage.css";
+import Button from "../Shared/Buttons/Button";
 
 const HomePage = () => (
   <div>
@@ -25,5 +26,5 @@ const HomePage = () => (
     ></Button> */}
   </div>
 );
-
 export default HomePage;
+

@@ -2,11 +2,11 @@ import ProductsAPI from './ProductsAPI/ProductsAPI'
 import { useParams } from 'react-router-dom';
 const Products = props => {
   const { categoryId } = useParams();
-  console.log("Products.js: " + props.clientId)
-  return (  <div>
-     Products:
+  console.log(props.clientId)
+  return (  
+  <div>
      <ProductsAPI categoryId={categoryId} clientId={props.clientId} />
-    </div>
+  </div>
   );
 };
   

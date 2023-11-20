@@ -19,9 +19,11 @@ function App() {
     }
     setClientId(storedClientId);
   }, []);
-
-  console.log("App.js: " + sessionStorage.getItem('clientId'));
-  
+  useEffect(() => {
+    if (clientId != null) {
+      console.log("App.js[22-26] / current 'clientId' set to: " + clientId)
+    }
+  }, [clientId])
   return (
     <div className="App">
       <Router>

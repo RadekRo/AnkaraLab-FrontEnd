@@ -1,17 +1,69 @@
-import React from 'react'
-import "./Item.css";
+import React, { useEffect, useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Row, Col } from 'react-bootstrap';
 
-const Basket = props => (
-  <div>
-  <div>
-    <h1></h1>
-  </div>
-<div className="default">Id koszyka: {props.basket.id}</div>
-<div className="default">Id klienta: {props.basket.clientId}</div>
-<div className="default">Id produktu: {props.basket.productId}</div>
-<div className="default">Ilość: {props.basket.quantity}</div>
-<div className="default">Id zamówienia: {props.basket.orderId}</div>
-</div>
-  )
-  
-  export default Basket
+const Item = (props) => {
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let isComponentMounted = true;
+
+    const fetchItemData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`https://localhost:7162/api/products/${props.item.productId}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch product data');
+        }
+        const newData = await response.json();
+        if (isComponentMounted) {
+          setProduct(newData);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+        if (isComponentMounted) {
+          setError('Error fetching product data');
+          setLoading(false);
+        }
+      }
+    };
+
+    if (props.item.productId !== null) {
+      fetchItemData();
+    } else {
+      setLoading(false);
+      setProduct(null);
+    }
+
+    return () => {
+      isComponentMounted = false;
+    };
+  }, [props.item.productId]);
+
+  if (loading) {
+    return <p>Loading...</p>; 
+  }
+
+  if (error) {
+    return <p>{error}</p>; 
+  }
+
+  if (product === null) {
+    return null; 
+  }
+
+  return (
+  <Row>
+    <Col xs={1} className="border-top">{props.index}</Col>
+    <Col xs={6} className="border-top">{product.description}</Col>
+    <Col xs={2} className="border-top text-end">{product.price} PLN</Col>
+    <Col xs={1} className="border-top text-end">{props.item.quantity}</Col>
+    <Col xs={2} className="border-top text-end">{product.price * props.item.quantity} PLN</Col>
+  </Row>
+  );
+};
+
+export default Item;

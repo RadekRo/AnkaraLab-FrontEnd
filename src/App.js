@@ -19,7 +19,11 @@ function App() {
     }
     setClientId(storedClientId);
   }, []);
-  
+  useEffect(() => {
+    if (clientId != null) {
+      console.log("App.js[22-26] / clientId: " + clientId)
+    }
+  }, [clientId])
   return (
     <div className="App">
       <Router>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./HomePage.css";
+import Button from "../Shared/Buttons/Button";
 
 const images = [
   {
@@ -34,7 +35,6 @@ const images = [
     alt: "Zamów wydruki na fotogażetach",
   },
 ];
-
 const HomePage = () => {
   return (
     <div className="homepage-container">
@@ -46,5 +46,5 @@ const HomePage = () => {
     </div>
   );
 };
-
 export default HomePage;
+

@@ -21,7 +21,7 @@ function App() {
   }, []);
   useEffect(() => {
     if (clientId != null) {
-      console.log("App.js[22-26] / clientId: " + clientId)
+      console.log("App.js[22-26] / current 'clientId' set to: " + clientId)
     }
   }, [clientId])
   return (

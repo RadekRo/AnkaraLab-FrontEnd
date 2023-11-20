@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import Item from '../Item/Item'
-import './BasketApi.css'
+//import './BasketApi.css'
+import { Container, Row, Col } from 'react-bootstrap';
 
 const BasketsApi = (props) => {
   const [data, setData] = useState([]);
-  console.log(props.clientId)
   const fetchBasketData = async () => {
     try {
       const response = await fetch(`https://localhost:7162/api/basket/${props.clientId}`);
@@ -27,28 +27,24 @@ const BasketsApi = (props) => {
     }, [props.clientId]);
 
   return (
-    <div className="BasketApi">
-      <table>
-      <thead>
-          <tr>
-            <th></th>
-            <th></th>
-            <th>cena</th>
-            <th>sztuk</th>
-            <th>wartość</th>
-          </tr>
-      </thead>
-      <tbody>
-      {data.length > 0 ? (
-        data.map((item) => (
-          <Item key={item.id} item={item} />
+      <Container>
+        <Row>
+          <Col xs={1}></Col>
+          <Col xs={6}></Col>
+          <Col xs={2} className="text-end fw-bold">cena</Col>
+          <Col xs={1} className="text-end fw-bold">sztuk</Col>
+          <Col xs={2} className="text-end fw-bold">wartość</Col>
+        </Row>
+      { data.length > 0 ? (
+        data.map((item, index) => (
+          <Item key={item.id} item={item} index={index + 1} />
         ))
       ) : (
-        <tr><td>Twój koszyk jest pusty ziomuś!</td></tr>
+        <Row>
+          <Col>Twój koszyk jest pusty ziomuś!</Col>
+        </Row>
       )}
-      </tbody>
-    </table>
-    </div>
+      </Container>
   );
 }
 export default BasketsApi;

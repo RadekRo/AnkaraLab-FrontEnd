@@ -6,7 +6,7 @@ const Item = (props) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    let isMounted = true;
+    let isComponentMounted = true;
 
     const fetchItemData = async () => {
       setLoading(true);
@@ -16,13 +16,13 @@ const Item = (props) => {
           throw new Error('Failed to fetch product data');
         }
         const newData = await response.json();
-        if (isMounted) {
+        if (isComponentMounted) {
           setProduct(newData);
           setLoading(false);
         }
       } catch (error) {
         console.error('Error fetching product data:', error);
-        if (isMounted) {
+        if (isComponentMounted) {
           setError('Error fetching product data');
           setLoading(false);
         }
@@ -37,7 +37,7 @@ const Item = (props) => {
     }
 
     return () => {
-      isMounted = false;
+      isComponentMounted = false;
     };
   }, [props.item.productId]);
 
@@ -52,7 +52,7 @@ const Item = (props) => {
   if (product === null) {
     return null; 
   }
-  
+
   return (
     <tr>
       <td></td>

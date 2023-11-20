@@ -5,7 +5,6 @@ const Products = props => {
   console.log(props.clientId)
   return (  
   <div>
-     Products:
      <ProductsAPI categoryId={categoryId} clientId={props.clientId} />
   </div>
   );

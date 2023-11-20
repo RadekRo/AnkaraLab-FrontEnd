@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Row, Col } from 'react-bootstrap';
 
 const Item = (props) => {
   const [product, setProduct] = useState(null);
@@ -54,13 +56,12 @@ const Item = (props) => {
   }
 
   return (
-    <tr>
-      <td></td>
-      <td>{product.description}</td>
-      <td>{product.price} PLN</td>
-      <td>{props.item.quantity}</td>
-      <td>{product.price * props.item.quantity} PLN</td>
-    </tr>
+  <Row>
+    <Col xs={3}>{product.description}</Col>
+    <Col xs={3}>{product.price} PLN</Col>
+    <Col xs={3}>{props.item.quantity}</Col>
+    <Col xs={3}>{product.price * props.item.quantity} PLN</Col>
+  </Row>
   );
 };
 

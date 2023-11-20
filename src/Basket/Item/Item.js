@@ -57,10 +57,11 @@ const Item = (props) => {
 
   return (
   <Row>
-    <Col xs={3}>{product.description}</Col>
-    <Col xs={3}>{product.price} PLN</Col>
-    <Col xs={3}>{props.item.quantity}</Col>
-    <Col xs={3}>{product.price * props.item.quantity} PLN</Col>
+    <Col xs={1} className="border-top">{props.index}</Col>
+    <Col xs={6} className="border-top">{product.description}</Col>
+    <Col xs={2} className="border-top text-end">{product.price} PLN</Col>
+    <Col xs={1} className="border-top text-end">{props.item.quantity}</Col>
+    <Col xs={2} className="border-top text-end">{product.price * props.item.quantity} PLN</Col>
   </Row>
   );
 };

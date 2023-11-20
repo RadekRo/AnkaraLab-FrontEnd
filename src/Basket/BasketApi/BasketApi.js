@@ -28,9 +28,16 @@ const BasketsApi = (props) => {
 
   return (
       <Container>
-      {data.length > 0 ? (
-        data.map((item) => (
-          <Item key={item.id} item={item} />
+        <Row>
+          <Col xs={1}></Col>
+          <Col xs={6}></Col>
+          <Col xs={2} className="text-end fw-bold">cena</Col>
+          <Col xs={1} className="text-end fw-bold">sztuk</Col>
+          <Col xs={2} className="text-end fw-bold">wartość</Col>
+        </Row>
+      { data.length > 0 ? (
+        data.map((item, index) => (
+          <Item key={item.id} item={item} index={index + 1} />
         ))
       ) : (
         <Row>

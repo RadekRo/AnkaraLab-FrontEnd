@@ -4,7 +4,7 @@ import './BasketApi.css'
 
 const BasketsApi = (props) => {
   const [data, setData] = useState([]);
-
+  console.log(props.clientId)
   const fetchBasketData = async () => {
     try {
       const response = await fetch(`https://localhost:7162/api/basket/${props.clientId}`);
@@ -19,7 +19,12 @@ const BasketsApi = (props) => {
     }
   };
   
-  useEffect(() => { fetchBasketData(); }, []);
+  useEffect(() => {
+    if (props.clientId !== null) {
+      fetchBasketData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.clientId]);
 
   return (
     <div className="BasketApi">

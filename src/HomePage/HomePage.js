@@ -1,7 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Link } from "react-router-dom";
+import { Container, Row } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./HomePage.css";
 import Banner from "./Banner/Banner";
+import Category from "./Category/Category";
 
 const images = [
   {
@@ -39,11 +41,18 @@ const HomePage = () => {
   return (
     <div>
       <Banner />
-      {images.map((image) => (
+      {/* {images.map((image) => (
         <Link to={image.link}>
           <img src={image.path} alt={image.alt} />
         </Link>
-      ))}
+      ))} */}
+      <Container>
+        <Row>
+          <Category name="Odbitki cyfrowe" />
+          <Category name="Gadżety"/>
+          <Category />
+        </Row>
+      </Container>
     </div>
   );
 };

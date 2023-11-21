@@ -1,9 +1,10 @@
 .question 
 {
-    font-weight: bold;
+    text-align: left;
 }
 
 .answer
 {
-    text-align: left;
+    text-align: justify;
+    
 }

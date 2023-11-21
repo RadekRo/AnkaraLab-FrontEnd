@@ -22,21 +22,21 @@ const images = [
   },
   {
     id: 3,
-    path: "/images/plotno.jpg",
+    path: "/images/gadzet.jpg",
     link: "/products/3",
-    alt: "Zamów wydruki na płótnie",
+    alt: "Zamów wydruki na fotogadżetach",
   },
   {
     id: 4,
     path: "/images/magnetyczne.jpg",
-    link: "/products/4",
+    link: "/products/6",
     alt: "Zamów wydruki magnetyczne",
   },
   {
     id: 5,
-    path: "/images/gadzet.jpg",
+    path: "/images/plotno.jpg",
     link: "/products/5",
-    alt: "Zamów wydruki na fotogażetach",
+    alt: "Zamów wydruki na płótnie",
   },
 ];
 const HomePage = () => {

@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./HomePage.css";
 import Banner from "./Banner/Banner";
 import Category from "./Category/Category";
+import "./Category/Category.css";
 
 const images = [
   {
@@ -11,6 +12,7 @@ const images = [
     path: "/images/zdjecia.jpg",
     link: "/products/1",
     alt: "Zamów odbitki fotograficzne",
+    css: "Category.css"
   },
   {
     id: 2,
@@ -41,18 +43,18 @@ const HomePage = () => {
   return (
     <div>
       <Banner />
-      {/* {images.map((image) => (
-        <Link to={image.link}>
-          <img src={image.path} alt={image.alt} />
+      {images.map((image) => (
+        <Link to={image.link} key={image.id}>
+          <img src={image.path} alt={image.alt} className="Category" />
         </Link>
-      ))} */}
-      <Container>
+      ))}
+      {/* <Container>
         <Row>
           <Category name="Odbitki cyfrowe" />
           <Category name="Gadżety"/>
           <Category />
         </Row>
-      </Container>
+      </Container> */}
     </div>
   );
 };

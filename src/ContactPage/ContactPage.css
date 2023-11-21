@@ -1,0 +1,18 @@
+contact-page {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .contact-page form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact-page label {
+    margin-bottom: 10px;
+  }
+  
+  .contact-page input,
+  .contact-page textarea {
+    margin-bottom: 10px;
+  }

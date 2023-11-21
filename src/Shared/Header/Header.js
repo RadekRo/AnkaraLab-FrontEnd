@@ -9,6 +9,7 @@ const Header = () => (
       </div> */}
     <div><Link to = {`/`}><img src="/images/logo.jpg" alt="logo" /></Link></div>
     <div><Link to = {`/basket`}>Koszyk</Link></div>
+    <div><Link to = {`/contact`}>Kontakt</Link></div>
   </div>
 );
 

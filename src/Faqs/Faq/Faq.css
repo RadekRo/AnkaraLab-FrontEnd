@@ -1,9 +1,10 @@
 .question
 {
-    background-color: brown;
+    background-color: lightgray;
+    text-align: center;
 }
 
 .answer 
 {
-    text-align: left;
+    text-align: center;
 }

@@ -1,5 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 
 const Product = props => 
 {
@@ -12,7 +13,7 @@ const Product = props =>
         body: JSON.stringify({
           ClientId: props.clientId,
           ProductId: props.product.id,
-          Quantity: 5,
+          Quantity: 2,
           OrderId: 0,
         }),
       });
@@ -28,16 +29,17 @@ const Product = props =>
   };
   
   return (
-    <div>
-      <div>
-        <h1>Product:</h1>
-      </div>
-    <div>{props.product.categoryId}</div>
-    <div>{props.product.name}</div>
-    <div>{props.product.price}</div>
-    <div>{props.product.description}</div>
-    <div><button onClick={AddToBasket}><Link to = {`../basket`}>Dodaj do koszyka</Link></button></div>
-    </div>
+    <Row className="border-top pb-3 pt-3">
+      <Col>
+        {props.product.description}
+      </Col>
+      <Col>
+        {props.product.price} PLN/szt.
+      </Col>
+      <Col>
+        <button onClick={AddToBasket} className="btn btn-sm btn-success"><Link to = {`../basket`} className="text-white text-decoration-none">Dodaj do koszyka</Link></button>
+      </Col>
+    </Row>
   )
 }
   export default Product;

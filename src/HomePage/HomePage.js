@@ -21,21 +21,21 @@ const images = [
     alt: "Zamów wydruki wielkoformatowe",
   },
   {
-    id: 3,
+    id: 5,
     path: "/images/plotno.jpg",
-    link: "/products/3",
+    link: "/products/5",
     alt: "Zamów wydruki na płótnie",
   },
   {
-    id: 4,
+    id: 6,
     path: "/images/magnetyczne.jpg",
-    link: "/products/4",
+    link: "/products/6",
     alt: "Zamów wydruki magnetyczne",
   },
   {
-    id: 5,
+    id: 3,
     path: "/images/gadzet.jpg",
-    link: "/products/5",
+    link: "/products/3",
     alt: "Zamów wydruki na fotogażetach",
   },
 ];

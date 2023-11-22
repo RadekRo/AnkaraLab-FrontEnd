@@ -1,8 +1,6 @@
 import FaqsApi from './FaqsApi/FaqsApi';
-import { useParams } from 'react-router-dom';
 
-const Faqs = () => {
-  const { } = useParams();
+const Faqs = props => {
   return (  <div>
      <FaqsApi />
     </div>

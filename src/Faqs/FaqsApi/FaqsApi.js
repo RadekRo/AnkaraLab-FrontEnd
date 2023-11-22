@@ -26,7 +26,8 @@ const FaqsApi = () => {
 
   return (
     <div>
-      <h1>Frequently asked questions</h1>
+      <div><br></br></div>
+      <h2>Frequently asked questions: </h2>
       {id ? (
         faq ? (
           <Faq faq={faq} />

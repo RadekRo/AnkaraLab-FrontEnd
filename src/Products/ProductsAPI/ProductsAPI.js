@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import { useParams } from "react-router-dom"
 import Product from '../Product/Product'
 
 const ProductsAPI = props => {
@@ -13,11 +12,9 @@ const ProductsAPI = props => {
       }
   
       fetchData()
-    }, [])
-    
+    }, [props.categoryId])
   return (<div>
-        FetchApi
-        {data && data.map((item) => <Product product={item} key={item.id} />)}
+        {data && data.map((item) => <Product product={item} key={item.id} clientId={props.clientId} />)}
       </div>)
 }
 

@@ -1,3 +1,5 @@
+import "./Faq.css";
+
 const Faq = (props) => (
   <div>
     <div>

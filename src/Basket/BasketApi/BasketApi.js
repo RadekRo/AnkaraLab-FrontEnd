@@ -43,7 +43,7 @@ const BasketsApi = (props) => {
         ))
       ) : (
         <Row>
-          <Col>Twój koszyk jest pusty ziomuś!</Col>
+          <Col>Twój koszyk jest pusty!</Col>
         </Row>
       )}
       </Container>

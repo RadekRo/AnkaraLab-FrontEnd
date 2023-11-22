@@ -29,7 +29,7 @@ const Product = props =>
   };
   
   return (
-    <Row className="border-top pb-3 pt-3">
+    <Row className="border-bottom pb-3 pt-3">
       <Col>
         {props.product.description}
       </Col>

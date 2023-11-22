@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Product from '../Product/Product';
 
 const ProductsAPI = props => {
@@ -14,7 +14,32 @@ const ProductsAPI = props => {
   
       fetchData()
     }, [props.categoryId])
-  return (<Container>
+    let theme = "";
+    switch (props.categoryId) {
+      case '1':
+        theme = "Odbitki fotograficzne";
+        break;
+      case '2':
+        theme = "Wydruki wielkoformatowe";
+        break;
+      case '3':
+        theme = "Fotogadżety";
+        break;
+      case '6':
+        theme = "Wydruki magnetyczne";
+        break;
+      case '5':
+        theme = "Fotoobrazy (canvas)";
+        break;
+      default:
+        theme = "Kategoria nieznana";
+        break;
+    }
+  return (
+      <Container>
+        <Row>
+          <Col className="fs-2 bg-success text-white pt-1 pb-1 rounded">{theme}</Col>
+        </Row>
         {data && data.map((item) => <Product product={item} key={item.id} clientId={props.clientId} />)}
       </Container>)
 }

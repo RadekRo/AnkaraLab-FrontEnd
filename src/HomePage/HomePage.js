@@ -21,22 +21,22 @@ const images = [
     alt: "Zamów wydruki wielkoformatowe",
   },
   {
-    id: 3,
-    path: "/images/gadzet.jpg",
-    link: "/products/3",
-    alt: "Zamów wydruki na fotogadżetach",
+    id: 5,
+    path: "/images/plotno.jpg",
+    link: "/products/5",
+    alt: "Zamów wydruki na płótnie",
   },
   {
-    id: 4,
+    id: 6,
     path: "/images/magnetyczne.jpg",
     link: "/products/6",
     alt: "Zamów wydruki magnetyczne",
   },
   {
-    id: 5,
-    path: "/images/plotno.jpg",
-    link: "/products/5",
-    alt: "Zamów wydruki na płótnie",
+    id: 3,
+    path: "/images/gadzet.jpg",
+    link: "/products/3",
+    alt: "Zamów wydruki na fotogażetach",
   },
 ];
 const HomePage = () => {

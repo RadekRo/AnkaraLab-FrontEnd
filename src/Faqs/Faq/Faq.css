@@ -1,10 +1,10 @@
-.question 
+.question
 {
-    text-align: left;
+    background-color: lightgray;
+    text-align: center;
 }
 
-.answer
+.answer 
 {
-    text-align: justify;
-    
+    text-align: center;
 }

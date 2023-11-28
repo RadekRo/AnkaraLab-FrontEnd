@@ -1,9 +1,10 @@
-.question 
+.question
 {
-    font-weight: bold;
+    background-color: lightgray;
+    text-align: center;
 }
 
-.answer
+.answer 
 {
-    text-align: left;
+    text-align: center;
 }

@@ -30,20 +30,22 @@ const BasketsApi = (props) => {
 
   return (
       <Container>
-        <Row>
-          <Col xs={1}></Col>
-          <Col xs={6}></Col>
-          <Col xs={2} className="text-end fw-bold">cena</Col>
-          <Col xs={1} className="text-end fw-bold">sztuk</Col>
-          <Col xs={2} className="text-end fw-bold">wartość</Col>
-        </Row>
+        {data.length > 0 ? (
+          <Row>
+            <Col xs={1}></Col>
+            <Col xs={6}></Col>
+            <Col xs={2} className="text-end fw-bold">cena</Col>
+            <Col xs={1} className="text-end fw-bold">sztuk</Col>
+            <Col xs={2} className="text-end fw-bold">wartość</Col>
+         </Row>
+        ) : null}
       { data.length > 0 ? (
         data.map((item, index) => (
           <Item key={item.id} item={item} index={index + 1} />
         ))
       ) : (
         <Row>
-          <Col>Twój koszyk jest pusty ziomuś!</Col>
+          <Col>Twój koszyk jest pusty!</Col>
         </Row>
       )}
       </Container>

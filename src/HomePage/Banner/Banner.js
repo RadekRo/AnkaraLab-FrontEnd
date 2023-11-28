@@ -1,11 +1,11 @@
 import React from "react";
+import "./Banner.css";
 
 const Banner = () => {
   return (
-    <div className="bg-info pt-5 pb-5">
-        ACTUALL PROMOTION BANNER
+    <div >
+      <img className="Baner" src="/images/header.jpg" alt="logo" />
     </div>
   );
 };
 export default Banner;
-

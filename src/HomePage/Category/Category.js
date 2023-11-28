@@ -1,10 +1,11 @@
 import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./Category.css";
 
 const Category = props => {
     return (
     
-    <Col sm={12} md={6} lg={4} className="p-5 border">
+    <Col sm={12} md={6} lg={4} className="p-5 border Category">
         <Link to={`../products/1`}>{props.name}</Link>
     </Col>
     );

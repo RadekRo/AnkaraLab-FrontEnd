@@ -50,7 +50,7 @@ const ProductsAPI = props => {
           <Col><Link className="text-decoration-none" to = {`../products/3`}>Fotogadżety</Link></Col>
         </Row>
         {/* {data && data.map((item) => <Product product={item} key={item.id} clientId={props.clientId} />)} */}
-        <Form>
+        <Form className="d-flex justify-content-center align-items-center">
           <Form.Group as={Col} xs={12} md={6}>
             <Form.Label>Wybierz format odbitki:</Form.Label>
             <Form.Select name="selectedSize" aria-label="Default select example">

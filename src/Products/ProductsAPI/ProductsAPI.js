@@ -50,14 +50,18 @@ const ProductsAPI = props => {
           <Col><Link className="text-decoration-none" to = {`../products/3`}>Fotogadżety</Link></Col>
         </Row>
         {/* {data && data.map((item) => <Product product={item} key={item.id} clientId={props.clientId} />)} */}
-        <Form.Select aria-label="Default select example">
-          <option>Wybierz format odbitki: </option>
-          {data && data.map((item, index) => (
-            <option key={index} value={item.description}>
-              {item.description}
-            </option>
-          ))}
-        </Form.Select>
+        <Form>
+          <Form.Group as={Col} xs={12} md={6}>
+            <Form.Label>Wybierz format odbitki:</Form.Label>
+            <Form.Select name="selectedSize" aria-label="Default select example">
+              {data && data.map((item, index) => (
+                <option key={index} value={item.size}>
+                  {item.size}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </Form>
       </Container>)
 }
 

@@ -8,8 +8,12 @@ const Header = () => (
       <Link to = {`/faq`}>Faq</Link><br/>
       </div> */}
     <div><Link to = {`/`}><img src="/images/logo.jpg" alt="logo" /></Link></div>
+    <div><Link to = {`/contact`}>kontakt</Link></div>
+    <div><Link to = {`/aboutus`}>O nas</Link></div>
     <div><Link to = {`/faq`}>FAQs</Link></div>
     <div><Link to = {`/basket`}>Koszyk</Link></div>
+    
+
     
   </div>
 );

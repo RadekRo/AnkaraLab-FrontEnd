@@ -1,18 +1,19 @@
-contact-page {
-    max-width: 400px;
-    margin: 0 auto;
-  }
+.contact-page {
+  padding: 20px;
+}
+
+.contact-info {
+  margin-bottom: 20px;
+}
+
+.contact-info .icon {
+  margin-right: 10px;
+}
+
+.contact-form {
+  margin-top: 20px;
+  display: block;
+  text-align: left;
+ 
   
-  .contact-page form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .contact-page label {
-    margin-bottom: 10px;
-  }
-  
-  .contact-page input,
-  .contact-page textarea {
-    margin-bottom: 10px;
-  }
+}

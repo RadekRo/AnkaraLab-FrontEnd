@@ -7,6 +7,7 @@ import Basket from './Basket/Basket';
 import Products from './Products/Products';
 import Faqs from './Faqs/Faqs';
 import ContactPage from './ContactPage/ContactPage';
+
 import './App.css';
 
 function App() {

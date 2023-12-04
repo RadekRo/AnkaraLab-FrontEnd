@@ -2,8 +2,10 @@
   padding: 20px;
 }
 
-.contact-info {
-  margin-bottom: 20px;
+.contact-info p,
+.contact-form label {
+  text-align: center;
+  flex-direction: row-reverse
 }
 
 .contact-info .icon {
@@ -12,8 +14,4 @@
 
 .contact-form {
   margin-top: 20px;
-  display: block;
-  text-align: left;
- 
-  
 }

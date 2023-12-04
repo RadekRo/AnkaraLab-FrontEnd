@@ -6,6 +6,9 @@ import NotFound from './Shared/NotFound/NotFound';
 import Basket from './Basket/Basket';
 import Products from './Products/Products';
 import Faqs from './Faqs/Faqs';
+import ContactPage from './ContactPage/ContactPage';
+import AboutUsPage from './AboutUs/AboutUs';
+
 import './App.css';
 
 function App() {
@@ -34,6 +37,8 @@ function App() {
           <Route path="/faq" element={<Faqs clientId={clientId} />} />
           <Route path="/faq/:id" element={<Faqs />} />
           <Route path="/products/:categoryId" element={<Products clientId={clientId} />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/aboutus" element={<AboutUsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

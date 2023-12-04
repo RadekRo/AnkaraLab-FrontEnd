@@ -1,0 +1,45 @@
+.about-us-page {
+    padding: 50px;
+    background-color: #f4f4f4;
+  }
+  
+  .about-us-page h1 {
+    color: #b59898;
+  }
+  
+  .about-us-info {
+    margin-top: 30px;
+  }
+  
+  .about-us-icons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .about-us-icon {
+    flex: 0 0 48%;
+  }
+  
+  .about-us-icon i {
+    font-size: 36px;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .about-us-logos img {
+    max-width: 100px;
+    margin: 10px;
+  }
+  
+  .about-us-timeline {
+    margin-top: 30px;
+  }
+  
+  .about-us-timeline-item {
+    margin-bottom: 30px;
+  }
+  
+  .about-us-timeline-item h3 {
+    color: #007bff;
+  }

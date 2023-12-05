@@ -3,6 +3,7 @@ import { Container, Row } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./HomePage.css";
 import Banner from "./Banner/Banner";
+import Promo from "./Promo/Promo";
 import Category from "./Category/Category";
 import "./Category/Category.css";
 
@@ -43,6 +44,7 @@ const HomePage = () => {
   return (
     <div>
       <Banner />
+      <Promo />
       {images.map((image) => (
         <Link to={image.link} key={image.id}>
           <img src={image.path} alt={image.alt} className="Category" />

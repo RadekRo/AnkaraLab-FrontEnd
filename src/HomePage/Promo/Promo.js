@@ -13,7 +13,7 @@ const Promo = () => {
       }
   
       fetchData()
-    })
+    }, [])
 
 
 return (

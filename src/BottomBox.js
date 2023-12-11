@@ -35,7 +35,7 @@ function BottomBox() {
                 <a href="">Zobacz</a>
               </p>
             </div>
-            <div id="lenshero">
+            <div id="loyalclub">
               <a href="loyalclub" title="loyalclub" target="_blank">
                 <img src="" alt="loyalclub" />
               </a>

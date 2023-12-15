@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import "./Header.css";
+import RegisterButton from '../Buttons/RegisterButton';
 
 const Header = () => {
   const [expanded, setExpanded] = useState(false);
@@ -13,6 +14,7 @@ const Header = () => {
     <Navbar expand="md" className="navbar-dark bg-dark">
       <Container>
         <Navbar.Brand>
+        
           <Link to={`/`}><img src="/images/logo.jpg" alt="logo" /></Link>
         </Navbar.Brand>
         <Navbar.Toggle onClick={handleToggle} />
@@ -22,6 +24,7 @@ const Header = () => {
             <Nav.Link as={Link} to={`/aboutus`} onClick={() => setExpanded(false)} className="ml-auto">O nas</Nav.Link>
             <Nav.Link as={Link} to={`/faq`} onClick={() => setExpanded(false)} className="ml-auto">FAQs</Nav.Link>
             <Nav.Link as={Link} to={`/basket`} onClick={() => setExpanded(false)} className="ml-auto">Koszyk</Nav.Link>
+            <RegisterButton />
           </Nav>
         </Navbar.Collapse>
       </Container>

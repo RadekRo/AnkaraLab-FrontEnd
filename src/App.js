@@ -10,6 +10,7 @@ import ContactPage from './ContactPage/ContactPage';
 import AboutUsPage from './AboutUs/AboutUs';
 
 import './App.css';
+import SignIn from './SignIn/SignIn';
 
 function App() {
   const [clientId, setClientId] = useState(null);
@@ -39,6 +40,7 @@ function App() {
           <Route path="/products/:categoryId" element={<Products clientId={clientId} />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/aboutus" element={<AboutUsPage />} />
+          <Route path="/SignIn" element={<SignIn />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

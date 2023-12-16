@@ -16,9 +16,9 @@ class SignIn extends Component {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = event => {
-    alert(`${this.state.username}`);
-    event.preventDefault();
+  // handleSubmit = event => {
+  //   alert(`${this.state.username}`);
+  //   event.preventDefault();
 
     handleSubmit = async event => {
       event.preventDefault();
@@ -43,7 +43,7 @@ class SignIn extends Component {
       }
     };
     
-}
+
 
   render() {
     return (

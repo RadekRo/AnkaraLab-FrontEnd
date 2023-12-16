@@ -6,7 +6,7 @@ const RegisterButton = () => {
   return (
     <div>
       <Link to="../../SignIn">
-        <button>SignIn</button>
+        <button>Register</button>
       </Link>
     </div>
   )

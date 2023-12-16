@@ -1,62 +1,84 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class SignIn extends Component {
-    constructor(props) {
-      super(props)
+  state = {
+    username: '',
+    password: '',
+    confirmationWord: '',
+    clientName: '',
+    surname: '',
+    newsletter: 'true'
+  };
+
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
+  handleSubmit = event => {
+    alert(`${this.state.username}`);
+    event.preventDefault();
+
+    handleSubmit = async event => {
+      event.preventDefault();
+        try {
+        const response = await fetch('adres_twojego_endpointu', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json', // Ustawienie typu zawartości jako JSON
+          },
+          body: JSON.stringify(this.state), // Przesłanie danych z formularza w formacie JSON
+        });
     
-      this.state = {
-         username: '',
-         password: '',
-         confirmationWord: '',
-         clientName: '',
-         surname: '',
-
+        if (response.ok) {
+          const data = await response.json();
+          // Obsługa odpowiedzi z serwera
+          console.log('Dane przesłane pomyślnie:', data);
+        } else {
+          console.error('Wystąpił błąd podczas przesyłania danych.');
+        }
+      } catch (error) {
+        console.error('Wystąpił błąd:', error);
       }
-    }
-    handleUsernameChange = (event) => {
-        this.setState({username: event.target.value});
-    }
-    handlePasswordChange = (event) =>{
-        this.setState({password: event.target.value});
-    }
-    handleConfirmationWordChange= (event) =>{
-        this.setState({confirmationWord: event.target.value});
-    }
-    handleClientNameChange= (event) =>{
-        this.setState({clientName: event.target.value});
-    }
-    handleSurnameChange= (event) =>{
-        this.setState({surname: event.target.value});
-    }
-
+    };
+    
+}
 
   render() {
     return (
-    <form className='none'>
+      <form className='none' onSubmit={this.handleSubmit}>
         <div>
-            <label>Username</label>
-            <input type='text' value={this.state.username} onChange={this.handleUsernameChange}/>
-        </div>
-        <div> 
-            <label>Password</label>
-            <input type='text' value={this.state.password} onChange={this.handlePasswordChange}/>
-        </div>
-        <div>    
-            <label>Confirm Password</label>
-            <input type='text' value={this.state.confirmationWord} onChange={this.handleConfirmationWordChange}/>
+          <label>Username</label>
+          <input type='text' name='username' value={this.state.username} onChange={this.handleChange} />
         </div>
         <div>
-            <label>Name</label>
-            <input type='text' value={this.state.name} onChange={this.handleClientNameChange}/>
+          <label>Password</label>
+          <input type='text' name='password' value={this.state.password} onChange={this.handleChange} />
         </div>
         <div>
-            <label>Surname</label>
-            <input type='text' value={this.state.surname} onChange={this.handleSurnameChange}/>
+          <label>Confirm Password</label>
+          <input type='text' name='confirmationWord' value={this.state.confirmationWord} onChange={this.handleChange} />
         </div>
-    </form>
-    )
+        <div>
+          <label>Name</label>
+          <input type='text' name='clientName' value={this.state.clientName} onChange={this.handleChange} />
+        </div>
+        <div>
+          <label>Surname</label>
+          <input type='text' name='surname' value={this.state.surname} onChange={this.handleChange} />
+        </div>
+        <div>
+          <label>Newsletter</label>
+          <select name='newsletter' value={this.state.newsletter} onChange={this.handleChange}>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+        <button type="submit">Register</button>
+      </form>
+    );
   }
 }
 
-export default SignIn
+export default SignIn;

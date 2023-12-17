@@ -3,12 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 class SignIn extends Component {
   state = {
-    username: '',
-    password: '',
-    confirmationWord: '',
-    clientName: '',
-    surname: '',
-    newsletter: 'true'
+    name: "",
+    surname: "",
+    login: "",
+    password: "",
+    newsletter: "true"
   };
 
   handleChange = event => {
@@ -16,14 +15,14 @@ class SignIn extends Component {
     this.setState({ [name]: value });
   };
 
-  // handleSubmit = event => {
   //   alert(`${this.state.username}`);
   //   event.preventDefault();
 
     handleSubmit = async event => {
       event.preventDefault();
         try {
-        const response = await fetch('adres_twojego_endpointu', {
+          console.log(this.state)
+        const response = await fetch('https://localhost:7162/api/client/newClient', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json', // Ustawienie typu zawartości jako JSON
@@ -49,24 +48,20 @@ class SignIn extends Component {
     return (
       <form className='none' onSubmit={this.handleSubmit}>
         <div>
-          <label>Username</label>
-          <input type='text' name='username' value={this.state.username} onChange={this.handleChange} />
-        </div>
-        <div>
-          <label>Password</label>
-          <input type='text' name='password' value={this.state.password} onChange={this.handleChange} />
-        </div>
-        <div>
-          <label>Confirm Password</label>
-          <input type='text' name='confirmationWord' value={this.state.confirmationWord} onChange={this.handleChange} />
-        </div>
-        <div>
           <label>Name</label>
-          <input type='text' name='clientName' value={this.state.clientName} onChange={this.handleChange} />
+          <input type='text' name='name' value={this.state.name} onChange={this.handleChange} />
         </div>
         <div>
           <label>Surname</label>
           <input type='text' name='surname' value={this.state.surname} onChange={this.handleChange} />
+        </div>
+        <div>
+          <label>Login</label>
+          <input type='text' name='login' value={this.state.login} onChange={this.handleChange} />
+        </div>
+        <div>
+          <label>Password</label>
+          <input type='password' name='password' value={this.state.confirmationWord} onChange={this.handleChange} />
         </div>
         <div>
           <label>Newsletter</label>

@@ -12,6 +12,7 @@ import BottomBox from './BottomBox';
 
 import './App.css';
 import SignIn from './SignIn/SignIn';
+import Login from './Login/Login';
 
 function App() {
   const [clientId, setClientId] = useState(null);
@@ -44,7 +45,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/aboutus" element={<AboutUsPage />} />
           <Route path="/SignIn" element={<SignIn />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/Login" element={<Login />} />
         </Routes>
       
         <BottomBox />

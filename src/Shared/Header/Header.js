@@ -4,6 +4,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import "./Header.css";
 import RegisterButton from '../Buttons/RegisterButton';
+import LoginButton from '../Buttons/LoginButton';
 
 const Header = () => {
   const [expanded, setExpanded] = useState(false);
@@ -25,6 +26,7 @@ const Header = () => {
             <Nav.Link as={Link} to={`/faq`} onClick={() => setExpanded(false)} className="ml-auto">FAQs</Nav.Link>
             <Nav.Link as={Link} to={`/basket`} onClick={() => setExpanded(false)} className="ml-auto">Koszyk</Nav.Link>
             <RegisterButton />
+            <LoginButton />
           </Nav>
         </Navbar.Collapse>
       </Container>

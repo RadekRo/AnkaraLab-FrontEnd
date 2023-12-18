@@ -8,6 +8,7 @@ import Products from './Products/Products';
 import Faqs from './Faqs/Faqs';
 import ContactPage from './ContactPage/ContactPage';
 import AboutUsPage from './AboutUs/AboutUs';
+import BottomBox from './BottomBox'; 
 
 import './App.css';
 import SignIn from './SignIn/SignIn';
@@ -23,11 +24,13 @@ function App() {
     }
     setClientId(storedClientId);
   }, []);
+
   useEffect(() => {
     if (clientId != null) {
-      console.log("App.js[22-26] / current 'clientId' set to: " + clientId)
+      console.log("App.js[22-26] / current 'clientId' set to: " + clientId);
     }
-  }, [clientId])
+  }, [clientId]);
+
   return (
     <div className="App">
       <Router>
@@ -43,6 +46,8 @@ function App() {
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+      
+        <BottomBox />
       </Router>
     </div>
   );

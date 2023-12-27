@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Login extends Component {
   state = {
-    login: "",
+    email: "",
     password: "",
   };
 
@@ -16,7 +16,7 @@ class Login extends Component {
       event.preventDefault();
         try {
           console.log(this.state)
-        const response = await fetch('https://localhost:7162/api/client/newClient', {
+        const response = await fetch('https://localhost:7162/api/client/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json', // Ustawienie typu zawartości jako JSON
@@ -42,8 +42,8 @@ class Login extends Component {
     return (
       <form className='none' onSubmit={this.handleSubmit}>
         <div>
-          <label>Login</label>
-          <input type='text' name='login' value={this.state.login} onChange={this.handleChange} />
+          <label>Email</label>
+          <input type='text' name='email' value={this.state.email} onChange={this.handleChange} />
         </div>
         <div>
           <label>Password</label>

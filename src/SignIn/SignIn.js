@@ -5,8 +5,9 @@ class SignIn extends Component {
   state = {
     name: "",
     surname: "",
-    login: "",
+    email:"",
     password: "",
+    confirmPassword: "",
     newsletter: "true"
   };
 
@@ -15,24 +16,21 @@ class SignIn extends Component {
     this.setState({ [name]: value });
   };
 
-  //   alert(`${this.state.username}`);
-  //   event.preventDefault();
-
     handleSubmit = async event => {
       event.preventDefault();
         try {
           console.log(this.state)
-        const response = await fetch('https://localhost:7162/api/client/newClient', {
+        const response = await fetch('https://localhost:7162/api/client/register', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json', // Ustawienie typu zawartości jako JSON
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify(this.state), // Przesłanie danych z formularza w formacie JSON
+          body: JSON.stringify(this.state),
         });
     
         if (response.ok) {
           const data = await response.json();
-          // Obsługa odpowiedzi z serwera
+          
           console.log('Dane przesłane pomyślnie:', data);
         } else {
           console.error('Wystąpił błąd podczas przesyłania danych.');
@@ -56,12 +54,16 @@ class SignIn extends Component {
           <input type='text' name='surname' value={this.state.surname} onChange={this.handleChange} />
         </div>
         <div>
-          <label>Login</label>
-          <input type='text' name='login' value={this.state.login} onChange={this.handleChange} />
+          <label>Email</label>
+          <input type='text' name='email' value={this.state.email} onChange={this.handleChange} />
         </div>
         <div>
           <label>Password</label>
-          <input type='password' name='password' value={this.state.confirmationWord} onChange={this.handleChange} />
+          <input type='password' name='password' value={this.state.password} onChange={this.handleChange} />
+        </div>
+        <div>
+          <label>Confirm password</label>
+          <input type='password' name='confirmPassword' value={this.state.confirmPassword} onChange={this.handleChange} />
         </div>
         <div>
           <label>Newsletter</label>

@@ -20,12 +20,15 @@ const Products = () => {
         HomePage{" "}
       </Link>
       <h1>Products</h1>
-      {filteredProducts.map((product) => (
-        <div>
-          {product.name} <br/>
-          Wysokość:{product.height}
-        </div>
-      ))}
+
+      <label htmlFor="odbitki">Wybierz produkt:</label>
+      <select id="produkt" name="Odbitki Fotograficzne">
+        {filteredProducts.map((product) => (
+          <option key={product.id} value={product.name}>
+            {product.name}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };

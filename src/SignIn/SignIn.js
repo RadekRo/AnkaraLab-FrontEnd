@@ -22,8 +22,8 @@ class SignIn extends Component {
 
     handleSubmit = async event => {
       event.preventDefault();
-        try {
-        const response = await fetch('adres_twojego_endpointu', {
+        try {console.log(this.state)
+        const response = await fetch('https://localhost:7162/api/client/new', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json', // Ustawienie typu zawartości jako JSON

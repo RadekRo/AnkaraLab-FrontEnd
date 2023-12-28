@@ -22,9 +22,9 @@ const Products = () => {
       <h1>Products</h1>
 
       <label htmlFor="odbitki">Wybierz produkt:</label>
-      <select id="produkt" name="Odbitki Fotograficzne">
+      <select id="produkt" productName="OdbitkiFotograficzne">
         {filteredProducts.map((product) => (
-          <option key={product.id} value={product.name}>
+          <option key={product.id} value={product.id}>
             {product.name}
           </option>
         ))}

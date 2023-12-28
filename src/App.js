@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './Shared/Header/Header';
 import HomePage from './HomePage/HomePage';
-import NotFound from './Shared/NotFound/NotFound';
-import Basket from './Basket/Basket';
-import Products from './Products/Products';
-import Faqs from './Faqs/Faqs';
-import ContactPage from './ContactPage/ContactPage';
-import AboutUsPage from './AboutUs/AboutUs';
-import BottomBox from './BottomBox'; 
-
 import './App.css';
-import SignIn from './SignIn/SignIn';
-import Login from './Login/Login';
+import Products from './Products/Products';
 
 function App() {
   const [clientId, setClientId] = useState(null);
@@ -35,20 +25,11 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/basket" element={<Basket clientId={clientId} />} />
-          <Route path="/faq" element={<Faqs clientId={clientId} />} />
-          <Route path="/faq/:id" element={<Faqs />} />
-          <Route path="/products/:categoryId" element={<Products clientId={clientId} />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/aboutus" element={<AboutUsPage />} />
-          <Route path="/SignIn" element={<SignIn />} />
-          <Route path="/Login" element={<Login />} />
-        </Routes>
-      
-        <BottomBox />
+          <Route path="/category/:categoryId" element={<Products/>} />
+
+        </Routes>  
       </Router>
     </div>
   );

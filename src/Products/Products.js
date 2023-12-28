@@ -1,12 +1,28 @@
-import ProductsAPI from './ProductsAPI/ProductsAPI'
-import { useParams } from 'react-router-dom';
-const Products = props => {
-  const { categoryId } = useParams();
-  return (  
-  <div>
-     <ProductsAPI categoryId={categoryId} clientId={props.clientId} />
-  </div>
-  );
+import { useParams } from "react-router";
+import products from "../TempData/ProductData";
+import { Link } from "react-router-dom";
+
+const Products = () => {
+    // pobranie parametrów z adresu w przegladarce
+const {categoryId} = useParams();
+// symulacja endpointu na backendzie
+const getProductByCategory = (id) => {
+    return products.filter(product => product.categoryId === parseInt(id));
 };
-  
-  export default Products;
+// symulacja fetcha
+const filteredProducts = getProductByCategory(categoryId);
+
+
+    return (
+      <div>
+        <Link to = "/"> HomePage </Link>
+        <h1>Products</h1>
+        {filteredProducts.map(product =>(
+         <div>{product.name}</div>
+        ))}
+      </div>
+    
+    )
+    };
+    
+    export default Products;

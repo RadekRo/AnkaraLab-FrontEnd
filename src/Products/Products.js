@@ -24,7 +24,7 @@ const Products = () => {
       <label htmlFor="odbitki">Wybierz produkt:</label>
       <select id="produkt" name="Odbitki Fotograficzne">
         {filteredProducts.map((product) => (
-          <option key={product.id} value={product.name}>
+          <option key={product.id} value={product.id}>
             {product.name}
           </option>
         ))}

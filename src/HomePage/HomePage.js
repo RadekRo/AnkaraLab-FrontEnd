@@ -8,7 +8,7 @@ return (
   <div>
     <h1>HomePage</h1>
     {categories.map(category =>(
-      <Link to = {`/category/${category.id}`}><div>{category.name}</div></Link>
+      <Link to = {`/category/${category.id}`} key = {category.id}><div>{category.name}</div></Link>
     ))}
   </div>
 )

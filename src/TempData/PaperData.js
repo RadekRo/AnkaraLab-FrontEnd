@@ -16,6 +16,12 @@ const papers = [
       name: "Satyna 260",
       categoryId: 2,
       isDefault: true
+    },
+    {
+      id: 4,
+      name: "Satyna 360",
+      categoryId: 3,
+      isDefault: true
     }
   ];
   export default papers;

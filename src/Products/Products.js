@@ -41,7 +41,7 @@ const Products = () => {
           </option>
         ))}
       </select>
-
+      <br />
       <label htmlFor="papier">Wybierz papier:</label>
       <select id="papier" name="papier" value={selectedPaper.id} onChange={handlePaperChange}>
         {filteredPapers.map((paper) => (

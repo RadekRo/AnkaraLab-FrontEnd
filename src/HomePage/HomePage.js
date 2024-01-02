@@ -7,7 +7,7 @@ const HomePage = () => {
     <div>
       <h1>HomePage</h1>
       {categories.map((category) => (
-        <Link to={`/category/${category.id}`}>
+        <Link to={`/category/${category.id}`} key = {category.id}>
           <div>{category.name}</div>
         </Link>
       ))}

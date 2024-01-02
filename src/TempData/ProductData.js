@@ -18,7 +18,7 @@ const products = [
   {
     id: 3,
     categoryId: 2,
-    name: "Kalyndorz 100x70cm",
+    name: "Kalendarz 100x70cm",
     width: 100,
     height: 70,
     isDefault: true
@@ -30,6 +30,6 @@ const products = [
     width: 10,
     height: 5,
     isDefault: true
-  },
+  }
 ];
 export default products;

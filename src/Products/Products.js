@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import papers from "../TempData/PaperData";
 import crops from "../TempData/CropData";
+import "./Products.css";
 
 
 const Products = () => {
@@ -38,14 +39,14 @@ const Products = () => {
   const handlePaperChange = (event) => {setSelectedPaper(filteredPapers[event.target.value -1])}
   const handleCropChange = (event) => {setSelectedCrop(filteredCrops[event.target.value -1])}
   return (
-    <div>
+    <div className="text-center">
       <Link to="/" className="btn btn-sn btn-info p-1">
         HomePage
       </Link>
       <h1>Products</h1>
-
+    <form className="form-product">
       <label htmlFor="odbitki">Wybierz produkt:</label>
-      <select id="produkt" name="size" value={selectedSize.id} onChange={handleSizeChange}>
+      <select className="form-select select-color" id="produkt" name="size" value={selectedSize.id} onChange={handleSizeChange}>
         {filteredProducts.map((product) => (
           <option key={product.id} value={product.id}>
             {product.name}
@@ -54,7 +55,7 @@ const Products = () => {
       </select>
       <br />
       <label htmlFor="papier">Wybierz papier:</label>
-      <select id="papier" name="papier" value={selectedPaper.id} onChange={handlePaperChange}>
+      <select className="form-select select-color" id="papier" name="papier" value={selectedPaper.id} onChange={handlePaperChange}>
         {filteredPapers.map((paper) => (
           <option key={paper.id} value={paper.id}>
             {paper.name}
@@ -63,13 +64,14 @@ const Products = () => {
       </select>
       <br />
       <label htmlFor="crop">Wybierz kadrowanie:</label>
-      <select id="crop" name="crop" value={selectedCrop.id} onChange={handleCropChange}>
+      <select className="form-select select-color" id="crop" name="crop" value={selectedCrop.id} onChange={handleCropChange}>
         {filteredCrops.map((crop) => (
           <option key={crop.id} value={crop.id}>
             {crop.name}
           </option>
         ))}
       </select>
+      </form>
     </div>
   );
 };

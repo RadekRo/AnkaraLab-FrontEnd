@@ -5,7 +5,7 @@ console.log(categories);
 const HomePage = () => {
   return (
     <div>
-      <h1>HomePage</h1>
+      <h1><img src='/images/alabLogo.jpg' alt='logotyp' /></h1>
       {categories.map((category) => (
         <Link to={`/category/${category.id}`} key = {category.id}>
           <div>{category.name}</div>

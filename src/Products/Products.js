@@ -55,8 +55,13 @@ const Products = () => {
   const handleCropChange = (event) => {
     setSelectedCrop(filteredCrops[event.target.value - 1]);
   };
-  const AddToABasket = () => {
-    sessionStorage.setItem("Basket", JSON.stringify(basketItem));
+  const AddToBasket = () => {
+    let storageBasket = JSON.parse(sessionStorage.getItem("Basket"));
+    if(!storageBasket){
+      storageBasket=[];
+    }
+    storageBasket.push(basketItem);
+    sessionStorage.setItem("Basket", JSON.stringify(storageBasket));
   };
   console.log(JSON.parse(sessionStorage.getItem("Basket")));
   return (
@@ -110,7 +115,7 @@ const Products = () => {
             </option>
           ))}
         </select>
-        <div className="btn btn-info p-1" onClick={AddToABasket}>
+        <div className="btn btn-info p-1" onClick={AddToBasket}>
           dawaj baskjet
         </div>
       </form>

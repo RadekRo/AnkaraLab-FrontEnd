@@ -5,8 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import papers from "../TempData/PaperData";
 import crops from "../TempData/CropData";
+import frames from "../TempData/FrameData";
 import "./Products.css";
-import Basket from "../Basket/Basket";
 
 const Products = () => {
   // pobranie parametrów z adresu w przegladarce
@@ -25,10 +25,20 @@ const Products = () => {
       return categoryIdString.includes(idString);
     });
   };
+  const getFramesByCategory = (id) => {
+    return frames.filter((frame) => frame.categoryId === parseInt(id));
+  };
   // symulacja fetcha
   const filteredProducts = getProductByCategory(categoryId);
   const filteredPapers = getPapersByCategory(categoryId);
   const filteredCrops = getCropsByCategory(categoryId);
+  const filteredFrames = getFramesByCategory(categoryId);
+  let showFrames = false;
+  if (filteredFrames.length > 0) {
+    showFrames = true;
+  }
+  console.log(filteredFrames);
+  console.log(showFrames);
 
   const [selectedSize, setSelectedSize] = useState(
     filteredProducts.find((product) => product.isDefault)
@@ -39,11 +49,15 @@ const Products = () => {
   const [selectedCrop, setSelectedCrop] = useState(
     filteredCrops.find((crop) => crop.isDefault)
   );
+  const [selectedFrame, setSelectedFrame] = useState(
+    filteredFrames.find((frame) => frame.isDefault)
+  );
 
   const basketItem = {
     size: selectedSize.name,
     paper: selectedPaper.name,
     crop: selectedCrop.name,
+    //frame: selectedFrame.name,
   };
 
   const handleSizeChange = (event) => {
@@ -54,6 +68,9 @@ const Products = () => {
   };
   const handleCropChange = (event) => {
     setSelectedCrop(filteredCrops[event.target.value - 1]);
+  };
+  const handleFrameChange = (event) => {
+    setSelectedFrame(filteredFrames[event.target.value - 1]);
   };
   const AddToBasket = () => {
     let storageBasket = JSON.parse(sessionStorage.getItem("Basket"));
@@ -115,6 +132,24 @@ const Products = () => {
             </option>
           ))}
         </select>
+        {showFrames && (
+          <>
+        <label htmlFor="frame">Wybierz ramkę:</label>
+        <select
+          className="form-select select-color"
+          id="frame"
+          name="frame"
+          value={selectedFrame.id}
+          onChange={handleFrameChange}
+        >
+          {filteredFrames.map((frame) => (
+            <option key={frame.id} value={frame.id}>
+              {frame.name}
+            </option>
+          ))}
+        </select>
+        </>
+        )}
         <div className="btn btn-info p-1" onClick={AddToBasket}>
           dawaj baskjet
         </div>

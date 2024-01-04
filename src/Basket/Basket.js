@@ -30,7 +30,8 @@ useEffect(() => {
       <Col>{index + 1} </Col>
       <Col className="col-6 d-flex justify-items-left">{basketItem.size}</Col>
       <Col className="col-2">{basketItem.paper}</Col>
-      <Col className="col-2">{basketItem.crop}</Col>
+      <Col className="col-1">{basketItem.crop}</Col>
+      <Col className="col-1">{basketItem.frame}</Col>
       <Col className="col-1"><div className = "btn btn-sm btn-danger" onClick={() => removeFromBasket(index)}>Usuń</div></Col>
     </Row>
   ))}</div>

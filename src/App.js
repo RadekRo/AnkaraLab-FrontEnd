@@ -6,6 +6,7 @@ import Products from "./Products/Products";
 import Login from "./Login/Login";
 import Header from "./Shared/Header";
 import Basket from "./Basket/Basket";
+import Register from "./Register/Register";
 
 function App() {
   const [clientId, setClientId] = useState(null);
@@ -33,6 +34,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/category/:categoryId" element={<Products />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/basket" element={<Basket />} />
         </Routes>
       </Router>

@@ -26,7 +26,11 @@ const Products = () => {
     });
   };
   const getFramesByCategory = (id) => {
-    return frames.filter((frame) => frame.categoryId === parseInt(id));
+    return frames.filter((frame) => {
+      const categoryIdString = frame.categoryId.toString();
+      const idString = id.toString();
+      return categoryIdString.includes(idString);
+    });
   };
   // symulacja fetcha
   const filteredProducts = getProductByCategory(categoryId);
@@ -57,7 +61,7 @@ const Products = () => {
     size: selectedSize.name,
     paper: selectedPaper.name,
     crop: selectedCrop.name,
-    //frame: selectedFrame.name,
+    frame: selectedFrame.name,
   };
 
   const handleSizeChange = (event) => {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
+import { saveAs } from 'file-saver';
 
 class Register extends Component {
 
@@ -14,7 +13,6 @@ class Register extends Component {
     newsletter: "true"
   };
 
-
 handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
@@ -23,7 +21,8 @@ handleChange = event => {
 handleSubmit = () => {
     const storageUser = JSON.stringify(this.state);
     sessionStorage.setItem("User", storageUser);
-    console.log(storageUser);
+    const blob = new Blob([storageUser], { type: 'application/json' });
+    saveAs(blob, 'user_data.json');
 };
     
 render () {

@@ -1,53 +1,57 @@
 import { useState } from "react";
-import users from "../TempData/LoginData";
 
 const Login = () => {
-  const getUserById = (id) => {
-    return users.find((user) => user.id === id);
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = event => {
+    const { name, value } = event.target;
+    setLoginData({ ...loginData, [name]: value });
   };
-  const currentUser = getUserById(1);
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (username === currentUser.login && password === currentUser.password) {
-      console.log("Zalogowałeś się!");
+
+  const handleSubmit = () => {
+    const storedUser = sessionStorage.getItem('User');
+    if (storedUser) {
+      const userData = JSON.parse(storedUser);
+
+      if (
+        loginData.email === userData.email &&
+        loginData.password === userData.password
+      ) {
+        alert('Login successful!');
+      } else {
+        alert('Invalid credentials. Please try again.');
+      }
     } else {
-      console.log("Nie zalogowałeś się!");
+      alert('User not found. Please register first.');
     }
-  };
-  const changeUsername = (event) => {
-    setUsername(event.target.value);
-    console.log(event.target.value);
-  };
-  const changePassword = (event) => {
-    setPassword(event.target.value);
-    console.log(event.target.value);
   };
 
   return (
     <div>
       <h2>Login</h2>
       <form id="loginForm" onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="email">Email:</label>
         <input
-          onChange={changeUsername}
           type="text"
-          id="username"
-          name="username"
+          name="email"
+          value={loginData.email}
+          onChange={handleChange}
           required
         />
         <br />
         <label htmlFor="password">Password:</label>
         <input
-          onChange={changePassword}
           type="password"
-          id="password"
           name="password"
+          value={loginData.password}
+          onChange={handleChange}
           required
         />
         <br />
-        <input type="submit" value="Login" />
+        <button type="submit">Login</button>
       </form>
     </div>
   );

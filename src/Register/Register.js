@@ -1,56 +1,57 @@
-import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { saveAs } from 'file-saver';
+import { useState } from 'react';
 
-class Register extends Component {
+const Register = () => {
 
-  state = {
+  const [formData, setFormData] = useState({
     name: "",
     surname: "",
     email:"",
     password: "",
     confirmPassword: "",
     newsletter: "true"
-  };
+  });
 
-handleChange = event => {
+  console.log(formData);
+
+  const handleChange = event => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    setFormData({...formData, [name]: value });
   };
 
-handleSubmit = () => {
-    const storageUser = JSON.stringify(this.state);
+  const handleSubmit = () => {
+    const storageUser = JSON.stringify(formData);
     sessionStorage.setItem("User", storageUser);
     const blob = new Blob([storageUser], { type: 'application/json' });
     saveAs(blob, 'user_data.json');
-};
+  };
     
-render () {
-        return (
-      <form className='none' onSubmit={this.handleSubmit}>
+  return (
+      <form className='none' onSubmit={handleSubmit}>
         <div>
           <label>Name</label>
-          <input type='text' name='name' value={this.state.name} onChange={this.handleChange} />
+          <input type='text' name='name' value={formData.name} onChange={handleChange} />
         </div>
         <div>
           <label>Surname</label>
-          <input type='text' name='surname' value={this.state.surname} onChange={this.handleChange} />
+          <input type='text' name='surname' value={formData.surname} onChange={handleChange} />
         </div>
         <div>
           <label>Email</label>
-          <input type='text' name='email' value={this.state.email} onChange={this.handleChange} />
+          <input type='text' name='email' value={formData.email} onChange={handleChange} />
         </div>
         <div>
           <label>Password</label>
-          <input type='password' name='password' value={this.state.password} onChange={this.handleChange} />
+          <input type='password' name='password' value={formData.password} onChange={handleChange} />
         </div>
         <div>
           <label>Confirm password</label>
-          <input type='password' name='confirmPassword' value={this.state.confirmPassword} onChange={this.handleChange} />
+          <input type='password' name='confirmPassword' value={formData.confirmPassword} onChange={handleChange} />
         </div>
         <div>
           <label>Newsletter</label>
-          <select name='newsletter' value={this.state.newsletter} onChange={this.handleChange}>
+          <select name='newsletter' value={formData.newsletter} onChange={handleChange}>
             <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
@@ -58,9 +59,5 @@ render () {
         <button type="submit">Register</button>
       </form>
   );
-    }
-}
-
-console.log(JSON.parse(sessionStorage.getItem("User")));
-
+};
 export default Register;

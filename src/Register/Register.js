@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { saveAs } from 'file-saver';
 import { useState } from 'react';
+import { Form } from 'react-bootstrap';
 
 const Register = () => {
 
@@ -29,34 +30,74 @@ const Register = () => {
     
   return (
       <form className='none' onSubmit={handleSubmit}>
+        
         <div>
-          <label>Name</label>
-          <input type='text' name='name' value={formData.name} onChange={handleChange} />
+        <div className="bg-info p-2 mb-2">Register</div>
+
+        <Form.Group controlId="Name">
+                    <Form.Label>Name:</Form.Label>
+                    <Form.Control 
+                    type="text"
+                    name="name" 
+                    placeholder="Podaj swoje imię" 
+                    onChange={handleChange}
+                    required />
+                </Form.Group>
+          
+          <Form.Group controlId="Surname">
+                    <Form.Label>Surname:</Form.Label>
+                    <Form.Control 
+                    type="text"
+                    name="surname" 
+                    placeholder="Podaj swoje Nazwisko" 
+                    onChange={handleChange}
+                    required />
+                </Form.Group>
         </div>
         <div>
-          <label>Surname</label>
-          <input type='text' name='surname' value={formData.surname} onChange={handleChange} />
+         
+          <Form.Group controlId="Email">
+                    <Form.Label>Email:</Form.Label>
+                    <Form.Control 
+                    type="text"
+                    name="email" 
+                    placeholder="Podaj email" 
+                    onChange={handleChange}
+                    required />
+                </Form.Group>
         </div>
         <div>
-          <label>Email</label>
-          <input type='text' name='email' value={formData.email} onChange={handleChange} />
+          
+          <Form.Group controlId="Password">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control 
+                    type="text"
+                    name="password" 
+                    placeholder="Podaj swoje hasło" 
+                    onChange={handleChange}
+                    required />
+                </Form.Group>
         </div>
         <div>
-          <label>Password</label>
-          <input type='password' name='password' value={formData.password} onChange={handleChange} />
-        </div>
-        <div>
-          <label>Confirm password</label>
-          <input type='password' name='confirmPassword' value={formData.confirmPassword} onChange={handleChange} />
+          
+          <Form.Group controlId="Password">
+                    <Form.Label>Confirm Password:</Form.Label>
+                    <Form.Control 
+                    type="text"
+                    name="confirmPassword" 
+                    placeholder="Potwierdź hasło" 
+                    onChange={handleChange}
+                    required />
+                </Form.Group>
         </div>
         <div>
           <label>Newsletter</label>
-          <select name='newsletter' value={formData.newsletter} onChange={handleChange}>
+          <select className="form-select" name='newsletter' value={formData.newsletter} onChange={handleChange}>
             <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
         </div>
-        <button type="submit">Register</button>
+        <button className="btn btn-success mt-2" type="submit">Register</button>
       </form>
   );
 };

@@ -10,12 +10,7 @@ const HomePage = () => {
           <div>{category.name}</div>
         </Link>
       ))}
-      <Link to="/login" className="btn btn-lg btn-secondary m-2">
-        Login
-      </Link>
-      <Link to="/register" className="btn btn-lg btn-secondary m-2">
-        Register
-      </Link>
+   
     </div>
   );
 };

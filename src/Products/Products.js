@@ -1,6 +1,5 @@
 import { useParams } from "react-router";
 import products from "../TempData/ProductData";
-import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import papers from "../TempData/PaperData";
@@ -78,8 +77,8 @@ const Products = () => {
   };
   const AddToBasket = () => {
     let storageBasket = JSON.parse(sessionStorage.getItem("Basket"));
-    if(!storageBasket){
-      storageBasket=[];
+    if (!storageBasket) {
+      storageBasket = [];
     }
     storageBasket.push(basketItem);
     sessionStorage.setItem("Basket", JSON.stringify(storageBasket));
@@ -87,9 +86,6 @@ const Products = () => {
   console.log(JSON.parse(sessionStorage.getItem("Basket")));
   return (
     <div className="text-center">
-      <Link to="/" className="btn btn-sn btn-info p-1">
-        HomePage
-      </Link>
       <h1>Products</h1>
       <form className="form-product">
         <label htmlFor="odbitki">Wybierz produkt:</label>
@@ -138,21 +134,21 @@ const Products = () => {
         </select>
         {showFrames && (
           <>
-        <label htmlFor="frame">Wybierz ramkę:</label>
-        <select
-          className="form-select select-color"
-          id="frame"
-          name="frame"
-          value={selectedFrame.id}
-          onChange={handleFrameChange}
-        >
-          {filteredFrames.map((frame) => (
-            <option key={frame.id} value={frame.id}>
-              {frame.name}
-            </option>
-          ))}
-        </select>
-        </>
+            <label htmlFor="frame">Wybierz ramkę:</label>
+            <select
+              className="form-select select-color"
+              id="frame"
+              name="frame"
+              value={selectedFrame.id}
+              onChange={handleFrameChange}
+            >
+              {filteredFrames.map((frame) => (
+                <option key={frame.id} value={frame.id}>
+                  {frame.name}
+                </option>
+              ))}
+            </select>
+          </>
         )}
         <div className="btn btn-info p-1" onClick={AddToBasket}>
           dawaj baskjet

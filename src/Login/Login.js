@@ -6,29 +6,25 @@ const Login = () => {
     email: '',
     password: '',
   });
+  const [loginAccepted, setLoginAccepted] = useState(' ');
 
   const handleChange = event => {
     const { name, value } = event.target;
     setLoginData({ ...loginData, [name]: value });
   };
 
-  const handleSubmit = () => {
-    const storedUser = sessionStorage.getItem('User');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const storedUser = JSON.parse(sessionStorage.getItem('User'));
+    console.log(storedUser)
     if (storedUser) {
-      const userData = JSON.parse(storedUser);
-
-      if (
-        loginData.email === userData.email &&
-        loginData.password === userData.password
-      ) {
-        alert('Login successful!');
-      } else {
-        alert('Invalid credentials. Please try again.');
-      }
-    } else {
-      alert('User not found. Please register first.');
+      loginData.email === storedUser.email && 
+      loginData.password === storedUser.password ?
+      setLoginAccepted(true) : setLoginAccepted(false)
     }
   };
+
+  loginAccepted === true && console.log("Zalogowano pomyślnie");
 
   return (
     <div>
@@ -52,10 +48,12 @@ const Login = () => {
           required
         />
         <br />
-        <div className="d-flex align-items-center justify-content-center m-2">
-          <p className="bg-info p-2">Wrong email or password! Try again or register.</p>
+        { (!loginAccepted) && (
+        <div className="d-flex align-items-center justify-content-center mt-2">
+          <p className="bg-danger text-white ps-4 pe-4 pt-2 pb-2"><span className="text-warning">Błędny email lub hasło.</span><br/>Spróbuj ponownie lub zarejestruj się!</p>
         </div>
-        <button type="submit">Login</button>
+        )}
+        <button type="submit" className="btn btn-success">Login</button>
       </form>
     </div>
   );

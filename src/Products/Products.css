@@ -1,0 +1,8 @@
+.form-product{
+    max-width: 800px;
+    margin: 0 auto;
+}
+.select-color{
+    background-color: rgb(13, 125, 125);
+    color: whitesmoke;
+}

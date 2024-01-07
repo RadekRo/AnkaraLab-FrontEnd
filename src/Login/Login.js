@@ -1,58 +1,63 @@
-import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from "react";
+import './Login.css';
 
-class Login extends Component {
-  state = {
-    email: "",
-    password: "",
-  };
+const Login = () => {
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: '',
+  });
+  const [loginAccepted, setLoginAccepted] = useState(' ');
 
-  handleChange = event => {
+  const handleChange = event => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    setLoginData({ ...loginData, [name]: value });
   };
 
-    handleSubmit = async event => {
-      event.preventDefault();
-        try {
-          console.log(this.state)
-        const response = await fetch('https://localhost:7162/api/client/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json', // Ustawienie typu zawartości jako JSON
-          },
-          body: JSON.stringify(this.state), // Przesłanie danych z formularza w formacie JSON
-        });
-    
-        if (response.ok) {
-          const data = await response.json();
-          // Obsługa odpowiedzi z serwera
-          console.log('Dane przesłane pomyślnie:', data);
-        } else {
-          console.error('Wystąpił błąd podczas przesyłania danych.');
-        }
-      } catch (error) {
-        console.error('Wystąpił błąd:', error);
-      }
-    };
-    
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const storedUser = JSON.parse(sessionStorage.getItem('User'));
+    if (storedUser) {
+      loginData.email === storedUser.email && 
+      loginData.password === storedUser.password ?
+      setLoginAccepted(true) : setLoginAccepted(false);
+    }
+    else {
+      setLoginAccepted(false);
+    }
+  };
 
+  loginAccepted === true && console.log("Zalogowano pomyślnie");
 
-  render() {
-    return (
-      <form className='none' onSubmit={this.handleSubmit}>
-        <div>
-          <label>Email</label>
-          <input type='text' name='email' value={this.state.email} onChange={this.handleChange} />
+  return (
+    <div>
+      <h2>Login</h2>
+      <form id="loginForm" onSubmit={handleSubmit}>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="text"
+          name="email"
+          value={loginData.email}
+          onChange={handleChange}
+          required
+        />
+        <br />
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          name="password"
+          value={loginData.password}
+          onChange={handleChange}
+          required
+        />
+        <br />
+        { (!loginAccepted) && (
+        <div className="d-flex align-items-center justify-content-center mt-2">
+          <p className="bg-danger text-white ps-4 pe-4 pt-2 pb-2"><span className="text-warning">Błędny email lub hasło.</span><br/>Spróbuj ponownie lub zarejestruj się!</p>
         </div>
-        <div>
-          <label>Password</label>
-          <input type='password' name='password' value={this.state.confirmationWord} onChange={this.handleChange} />
-        </div>
-        <button type="submit">Login</button>
+        )}
+        <button type="submit" className="btn btn-success">Login</button>
       </form>
-    );
-  }
-}
-
+    </div>
+  );
+};
 export default Login;

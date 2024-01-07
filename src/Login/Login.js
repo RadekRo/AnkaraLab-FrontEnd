@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './Login.css';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -51,6 +52,9 @@ const Login = () => {
           required
         />
         <br />
+        <div className="d-flex align-items-center justify-content-center m-2">
+          <p className="bg-info p-2">Wrong email or password! Try again or register.</p>
+        </div>
         <button type="submit">Login</button>
       </form>
     </div>

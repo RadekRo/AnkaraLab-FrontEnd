@@ -1,5 +1,6 @@
 import { useState } from "react";
 import './Login.css';
+import { Form } from "react-bootstrap";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -30,25 +31,30 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Login</h2>
+      <div className="bg-info p-2 mb-2"> Login</div>
       <form id="loginForm" onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="text"
-          name="email"
-          value={loginData.email}
-          onChange={handleChange}
-          required
-        />
+       
+        <Form.Group controlId="login">
+                    <Form.Label>Login:</Form.Label>
+                    <Form.Control 
+                    type="text"
+                    name="login" 
+                    placeholder="Podaj swój email" 
+                    onChange={handleChange}
+                    required />
+                </Form.Group>
         <br />
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={loginData.password}
-          onChange={handleChange}
-          required
-        />
+       
+        <Form.Group controlId="password">
+                    <Form.Label>password:</Form.Label>
+                    <Form.Control 
+                    type="password"
+                    name="password" 
+                    placeholder="Podaj swoje hasło" 
+                    onChange={handleChange}
+                    required />
+                </Form.Group>
+        <br />
         <br />
         { (!loginAccepted) && (
         <div className="d-flex align-items-center justify-content-center mt-2">

@@ -16,11 +16,13 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const storedUser = JSON.parse(sessionStorage.getItem('User'));
-    console.log(storedUser)
     if (storedUser) {
       loginData.email === storedUser.email && 
       loginData.password === storedUser.password ?
-      setLoginAccepted(true) : setLoginAccepted(false)
+      setLoginAccepted(true) : setLoginAccepted(false);
+    }
+    else {
+      setLoginAccepted(false);
     }
   };
 

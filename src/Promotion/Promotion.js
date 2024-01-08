@@ -8,12 +8,12 @@ const Promotion = () => {
     }
     
     const getRandomPromoItemId = () => {
-        return products[Math.floor(Math.random() * products.length)]
+        return products[Math.floor(Math.random() * products.length)].id;
     }
     
     const getProductById = (id) => {
-        console.log("Produkty" + products.find((product) => product.id === parseInt(id)))
-        return products.find((product) => product.id === parseInt(id));
+        console.log(`${id} ${products.find(product => product.id === id)}`)
+        return products.find(product => product.id === id);
     }
 
     const createPromotion = () => {
@@ -31,10 +31,10 @@ const Promotion = () => {
     let currentPromotion = promotion.expiryDate > Date() ? promotion : createPromotion()
     return (
         <div>
-            <button onClick={createPromotion}>nowa promka tak o</button>
             <div>Promotion Id: {currentPromotion.id}</div>
             <div>Data stworzenia promki; {currentPromotion.startDate.toDateString()}</div>
             <div>Data wygasniecia promki: {currentPromotion.expiryDate.toDateString()}</div>
+            <div>Id produktu na promce: {currentPromotion.promotedItemId}</div>
             <div>Nazwa produktu na promce: {getProductById(currentPromotion.promotedItemId).name}</div>
         </div>
     )

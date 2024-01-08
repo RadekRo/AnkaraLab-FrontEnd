@@ -1,5 +1,7 @@
 import products from "../TempData/ProductData";
 import promotion from "../TempData/PromotionData";
+
+const promotionInterval = 7
 const Promotion = () => {
     const getPromoLvl = () => {
         return (Math.random() * (0.20 - 0.05) + 0.05).toFixed(2);
@@ -10,7 +12,8 @@ const Promotion = () => {
     }
     
     const getProductById = (id) => {
-        return products.filter((product) => product.id === parseInt(id));
+        console.log("Produkty" + products.find((product) => product.id === parseInt(id)))
+        return products.find((product) => product.id === parseInt(id));
     }
 
     const createPromotion = () => {
@@ -18,30 +21,22 @@ const Promotion = () => {
         let newPromotion = {
             id: promotion.id + 1,
             promotedItemId : getRandomPromoItemId(),
-            startDate : today, //DateTime.Now
-            expiryDate : new Date(today.setDate(today.getDate() +7)), // DateTime.Now.AddDays(7)
+            startDate : new Date(today), //DateTime.Now
+            expiryDate : new Date(today.setDate(today.getDate() +5)), // DateTime.Now.AddDays(7)
             discountLvl :  getPromoLvl() // 0.05 - 0.2
         }
         return newPromotion;
     }
 
     let currentPromotion = promotion.expiryDate > Date() ? promotion : createPromotion()
-
-    if(currentPromotion > Date()) {
-        return (
-            <div>
-                Tu bedzie zajebista promka 😊
-            </div>
-        )
-    } else {
-        createPromotion()
-        return (
-            <div>
-                <div>{currentPromotion.id}</div>
-                <div>{currentPromotion.expiryDate.toDateString()}</div>
-                <div>{getProductById(currentPromotion.promotedItemId).name}</div>
-            </div>
-       )
-    }
+    return (
+        <div>
+            <button onClick={createPromotion}>nowa promka tak o</button>
+            <div>Promotion Id: {currentPromotion.id}</div>
+            <div>Data stworzenia promki; {currentPromotion.startDate.toDateString()}</div>
+            <div>Data wygasniecia promki: {currentPromotion.expiryDate.toDateString()}</div>
+            <div>Nazwa produktu na promce: {getProductById(currentPromotion.promotedItemId).name}</div>
+        </div>
+    )
 }
 export default Promotion;

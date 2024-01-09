@@ -1,6 +1,6 @@
 let startDate = new Date();
 let expiryDate = new Date(startDate);
-expiryDate.getDate() + 5;
+expiryDate.setDate(expiryDate.getDate() + 5); 
 
 let promotion = {
         id: 1, 

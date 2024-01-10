@@ -30,13 +30,11 @@ const Basket = () => {
           {storedBasket.map((basketItem, index) => (
             <Row className="m-1 border-bottom p-1 pb-2" key={index}>
               <Col>{index + 1} </Col>
-              <Col className="col-4 d-flex justify-items-left">
-                {basketItem.size}
+              <Col className="col-9 d-flex justify-items-left">
+                {basketItem.size}<br/>
+                [{basketItem.paper} {basketItem.crop} {basketItem.frame}]
               </Col>
-              <Col className="col-2">{basketItem.paper}</Col>
-              <Col className="col-2">{basketItem.crop}</Col>
-              <Col className="col-2">{basketItem.frame}</Col>
-              <Col className="col-1">
+              <Col className="col-2 text-center">
                 <div
                   className="btn btn-sm btn-danger"
                   onClick={() => removeFromBasket(index)}
@@ -45,6 +43,7 @@ const Basket = () => {
                 </div>
               </Col>
             </Row>
+
           ))}
         </div>
       )}

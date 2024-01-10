@@ -14,9 +14,9 @@ const Register = () => {
     confirmPassword: "",
     newsletter: "true"
   });
-
   const [errors, setErrors] = useState({
-    isPasswordEqual: ' '
+    isPasswordEqual: ' ',
+    isEmailOk:' '
   });
 
   console.log(formData);
@@ -25,6 +25,8 @@ const Register = () => {
     const { name, value } = event.target;
     setFormData({...formData, [name]: value });
   };
+
+  const emailValidation = (mail) => {return (/^[^\s@]+@[^\s@]+.[^\s@]+$/).test(mail)}
 
   const handleSubmit = (event) => {
     
@@ -38,7 +40,8 @@ const Register = () => {
     else {
       setErrors({...errors, isPasswordEqual: false});
     }
-    
+    setErrors({...errors, isEmailOk: emailValidation(formData.email)});
+
     // const blob = new Blob([storageUser], { type: 'application/json' });
     // saveAs(blob, 'user_data.json');
   };
@@ -80,7 +83,10 @@ const Register = () => {
                     onChange={handleChange}
                     required />
                 </Form.Group>
-        </div>
+                </div>
+        { !errors.isEmailOk && (
+          <div className="bg-warning mt-1 mb-1 p-2 rounded">Co ty masz za adres mailowy??? Z Kambodży?</div>
+        )}
         <div>
           
           <Form.Group controlId="Password">

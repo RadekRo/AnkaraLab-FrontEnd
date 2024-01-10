@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { saveAs } from 'file-saver';
+//import { saveAs } from 'file-saver';
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import './Register.css';
@@ -15,6 +15,10 @@ const Register = () => {
     newsletter: "true"
   });
 
+  const [errors, setErrors] = useState({
+    isPasswordEqual: ' '
+  });
+
   console.log(formData);
 
   const handleChange = event => {
@@ -22,11 +26,21 @@ const Register = () => {
     setFormData({...formData, [name]: value });
   };
 
-  const handleSubmit = () => {
-    const storageUser = JSON.stringify(formData);
-    sessionStorage.setItem("User", storageUser);
-    const blob = new Blob([storageUser], { type: 'application/json' });
-    saveAs(blob, 'user_data.json');
+  const handleSubmit = (event) => {
+    
+    event.preventDefault();
+
+    if (formData.password === formData.confirmPassword) { 
+      setErrors({...errors, isPasswordEqual: true});
+      const storageUser = JSON.stringify(formData);
+      sessionStorage.setItem("User", storageUser);
+    }
+    else {
+      setErrors({...errors, isPasswordEqual: false});
+    }
+    
+    // const blob = new Blob([storageUser], { type: 'application/json' });
+    // saveAs(blob, 'user_data.json');
   };
     
   return (
@@ -72,7 +86,7 @@ const Register = () => {
           <Form.Group controlId="Password">
                     <Form.Label>Dawaj hasło habibi:</Form.Label>
                     <Form.Control 
-                    type="text"
+                    type="password"
                     name="password" 
                     placeholder="Podaj swoje hasło" 
                     onChange={handleChange}
@@ -81,16 +95,19 @@ const Register = () => {
         </div>
         <div>
           
-          <Form.Group controlId="Password">
+          <Form.Group controlId="ConfirmPassword">
                     <Form.Label>Weźta powtórz hasło:</Form.Label>
                     <Form.Control 
-                    type="text"
+                    type="password"
                     name="confirmPassword" 
                     placeholder="Potwierdź hasło" 
                     onChange={handleChange}
                     required />
                 </Form.Group>
         </div>
+        { !errors.isPasswordEqual && (
+          <div className="bg-warning mt-1 mb-1 p-2 rounded">Błędna powtórka hasła ziomek! Skup się!</div>
+        )}
         <div>
           <label>Newsletter</label>
           <select className="form-select" name='newsletter' value={formData.newsletter} onChange={handleChange}>

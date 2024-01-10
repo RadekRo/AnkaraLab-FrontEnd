@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { saveAs } from 'file-saver';
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
+import './Register.css';
 
 const Register = () => {
 
@@ -29,13 +30,13 @@ const Register = () => {
   };
     
   return (
-      <form className='none' onSubmit={handleSubmit}>
-        
-        <div>
-        <div className="bg-info p-2 mb-2">Register</div>
-
-        <Form.Group controlId="Name">
-                    <Form.Label>Name:</Form.Label>
+      <div>
+        <div className="bg-info p-2 mb-2">Rejestracja użytkownika</div>
+        <div className="Register">
+          <form className='none' onSubmit={handleSubmit}>
+          <div>
+          <Form.Group controlId="Name">
+                    <Form.Label>Imię:</Form.Label>
                     <Form.Control 
                     type="text"
                     name="name" 
@@ -45,7 +46,7 @@ const Register = () => {
                 </Form.Group>
           
           <Form.Group controlId="Surname">
-                    <Form.Label>Surname:</Form.Label>
+                    <Form.Label>Nazwisko:</Form.Label>
                     <Form.Control 
                     type="text"
                     name="surname" 
@@ -69,7 +70,7 @@ const Register = () => {
         <div>
           
           <Form.Group controlId="Password">
-                    <Form.Label>Password:</Form.Label>
+                    <Form.Label>Dawaj hasło habibi:</Form.Label>
                     <Form.Control 
                     type="text"
                     name="password" 
@@ -81,7 +82,7 @@ const Register = () => {
         <div>
           
           <Form.Group controlId="Password">
-                    <Form.Label>Confirm Password:</Form.Label>
+                    <Form.Label>Weźta powtórz hasło:</Form.Label>
                     <Form.Control 
                     type="text"
                     name="confirmPassword" 
@@ -93,12 +94,14 @@ const Register = () => {
         <div>
           <label>Newsletter</label>
           <select className="form-select" name='newsletter' value={formData.newsletter} onChange={handleChange}>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
+            <option value="true">Tak</option>
+            <option value="false">Nie</option>
           </select>
         </div>
-        <button className="btn btn-success mt-2" type="submit">Register</button>
+        <button className="btn btn-success mt-2" type="submit">Yalla!</button>
       </form>
+      </div>
+      </div>
   );
 };
 export default Register;

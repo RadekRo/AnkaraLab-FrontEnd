@@ -32,6 +32,7 @@ const Login = () => {
   return (
     <div>
       <div className="bg-info p-2 mb-2"> Login</div>
+      <div className="Login">
       <form id="loginForm" onSubmit={handleSubmit}>
        
         <Form.Group controlId="login">
@@ -46,7 +47,7 @@ const Login = () => {
         <br />
        
         <Form.Group controlId="password">
-                    <Form.Label>password:</Form.Label>
+                    <Form.Label>Hasło:</Form.Label>
                     <Form.Control 
                     type="password"
                     name="password" 
@@ -61,8 +62,9 @@ const Login = () => {
           <p className="bg-danger text-white ps-4 pe-4 pt-2 pb-2"><span className="text-warning">Błędny email lub hasło.</span><br/>Spróbuj ponownie lub zarejestruj się!</p>
         </div>
         )}
-        <button type="submit" className="btn btn-success">Login</button>
+        <button type="submit" className="btn btn-success">Szalom</button>
       </form>
+      </div>
     </div>
   );
 };

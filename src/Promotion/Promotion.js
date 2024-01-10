@@ -1,5 +1,6 @@
 import products from "../TempData/ProductData";
 import promotion from "../TempData/PromotionData";
+import "./Promotion.css";
 
 const Promotion = () => {
     const getPromoLvl = () => {
@@ -28,13 +29,31 @@ const Promotion = () => {
 
     let currentPromotion = promotion.expiryDate > Date() ? promotion : createPromotion()
     return (
-        <div>
-            <div>Promotion Id: {currentPromotion.id}</div>
-            <div>Data stworzenia promki; {currentPromotion.startDate.toDateString()}</div>
-            <div>Data wygasniecia promki: {currentPromotion.expiryDate.toDateString()}</div>
-            <div>Id produktu na promce: {currentPromotion.promotedItemId}</div>
-            <div>Nazwa produktu na promce: {getProductById(currentPromotion.promotedItemId).name}</div>
+        <div class="promotion-details">
+    <div class="bg">
+        <div class="info-row">
+            <span class="label">Promotion Id:</span>
+            <span class="value">{currentPromotion.id}</span>
         </div>
+        <div class="info-row">
+            <span class="label">Data stworzenia promki:</span>
+            <span class="value">{currentPromotion.startDate.toDateString()}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Data wygaśnięcia promki:</span>
+            <span class="value">{currentPromotion.expiryDate.toDateString()}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Id produktu na promce:</span>
+            <span class="value">{currentPromotion.promotedItemId}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Nazwa produktu na promce:</span>
+            <span class="value">{getProductById(currentPromotion.promotedItemId).name}</span>
+        </div>
+    </div>
+</div>
+
     )
 }
 export default Promotion;

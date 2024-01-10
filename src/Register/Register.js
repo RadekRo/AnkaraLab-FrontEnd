@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import { saveAs } from 'file-saver';
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import './Register.css';
@@ -18,8 +17,6 @@ const Register = () => {
     isPasswordEqual: ' ',
     isEmailOk:' '
   });
-
-  console.log(formData);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -42,8 +39,6 @@ const Register = () => {
     }
     setErrors({...errors, isEmailOk: emailValidation(formData.email)});
 
-    // const blob = new Blob([storageUser], { type: 'application/json' });
-    // saveAs(blob, 'user_data.json');
   };
     
   return (

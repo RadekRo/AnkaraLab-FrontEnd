@@ -29,25 +29,35 @@ const Register = () => {
     
     event.preventDefault();
 
-    if (formData.password === formData.confirmPassword) { 
-      setErrors({...errors, isPasswordEqual: true});
-      const storageUser = JSON.stringify(formData);
-      sessionStorage.setItem("User", storageUser);
-    }
-    else {
-      setErrors({...errors, isPasswordEqual: false});
-    }
-    setErrors({...errors, isEmailOk: emailValidation(formData.email)});
+  let passwordEqual = false;
+  if (formData.password === formData.confirmPassword) {
+    passwordEqual = true;
+  }
+
+  const emailOk = emailValidation(formData.email);
+
+  setErrors({
+    isPasswordEqual: passwordEqual,
+    isEmailOk: emailOk
+  });
+
+  if (passwordEqual && emailOk) {
+    const storageUser = JSON.stringify(formData);
+    sessionStorage.setItem("User", storageUser);
+  }
+
+  console.log(errors.isPasswordEqual);
+  console.log(errors);
 
   };
     
   return (
       <div>
-        <div className="bg-info p-2 mb-2">Rejestracja użytkownika</div>
-        <div className="Register">
+        <div className="Register border rounded shadow bg-light mt-4 p-3">
           <form className='none' onSubmit={handleSubmit}>
+          <h3>Rejstracja użytkownika</h3>
           <div>
-          <Form.Group controlId="Name">
+          <Form.Group controlId="Name" className='mb-2'>
                     <Form.Label>Imię:</Form.Label>
                     <Form.Control 
                     type="text"
@@ -57,7 +67,7 @@ const Register = () => {
                     required />
                 </Form.Group>
           
-          <Form.Group controlId="Surname">
+          <Form.Group controlId="Surname" className='mb-2'>
                     <Form.Label>Nazwisko:</Form.Label>
                     <Form.Control 
                     type="text"
@@ -69,7 +79,7 @@ const Register = () => {
         </div>
         <div>
          
-          <Form.Group controlId="Email">
+          <Form.Group controlId="Email" className='mb-2'>
                     <Form.Label>Email:</Form.Label>
                     <Form.Control 
                     type="text"
@@ -84,8 +94,8 @@ const Register = () => {
         )}
         <div>
           
-          <Form.Group controlId="Password">
-                    <Form.Label>Dawaj hasło habibi:</Form.Label>
+          <Form.Group controlId="Password" className='mb-2'>
+                    <Form.Label>Hasło:</Form.Label>
                     <Form.Control 
                     type="password"
                     name="password" 
@@ -96,8 +106,8 @@ const Register = () => {
         </div>
         <div>
           
-          <Form.Group controlId="ConfirmPassword">
-                    <Form.Label>Weźta powtórz hasło:</Form.Label>
+          <Form.Group controlId="ConfirmPassword" className='mb-2'>
+                    <Form.Label>Powtórz hasło:</Form.Label>
                     <Form.Control 
                     type="password"
                     name="confirmPassword" 
@@ -107,16 +117,16 @@ const Register = () => {
                 </Form.Group>
         </div>
         { !errors.isPasswordEqual && (
-          <div className="bg-warning mt-1 mb-1 p-2 rounded">Błędna powtórka hasła ziomek! Skup się!</div>
+          <div className="bg-warning mt-1 mb-1 p-2 rounded">Błędnie powtórzone hasło!</div>
         )}
-        <div>
+        <div className="d-flex flex-column align-items-center">
           <label>Newsletter</label>
-          <select className="form-select" name='newsletter' value={formData.newsletter} onChange={handleChange}>
+          <select className="form-select option-select mt-2" name='newsletter' value={formData.newsletter} onChange={handleChange}>
             <option value="true">Tak</option>
             <option value="false">Nie</option>
           </select>
         </div>
-        <button className="btn btn-success mt-2" type="submit">Yalla!</button>
+        <button className="btn btn-success mt-4" type="submit">Rejestruj</button>
       </form>
       </div>
       </div>

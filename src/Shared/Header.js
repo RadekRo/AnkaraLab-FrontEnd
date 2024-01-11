@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="d-flex justify-content-between align-items-center">
+    <div className="d-flex justify-content-between align-items-center border-bottom border-1">
       <div>
         <Link to="/">
           <img src="/images/alabLogo.jpg" alt="logotyp" />

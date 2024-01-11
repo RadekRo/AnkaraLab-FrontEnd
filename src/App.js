@@ -1,25 +1,41 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './Shared/Header/Header';
-import HomePage from './HomePage/HomePage';
-import NotFound from './Shared/NotFound/NotFound';
-import Basket from './Basket/Basket';
-import Products from './Products/Products';
-import Faqs from './Faqs/Faqs';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./HomePage/HomePage";
+import "./App.css";
+import Products from "./Products/Products";
+import Login from "./Login/Login";
+import Header from "./Shared/Header";
+import Basket from "./Basket/Basket";
+import Register from "./Register/Register";
 
 function App() {
+  const [clientId, setClientId] = useState(null);
+
+  useEffect(() => {
+    let storedClientId = sessionStorage.getItem("clientId");
+    if (!storedClientId) {
+      storedClientId = Math.floor(Math.random() * 1000) + 1;
+      sessionStorage.setItem("clientId", storedClientId.toString());
+    }
+    setClientId(storedClientId);
+  }, []);
+
+  useEffect(() => {
+    if (clientId != null) {
+      console.log("App.js[22-26] / current 'clientId' set to: " + clientId);
+    }
+  }, [clientId]);
+
   return (
     <div className="App">
       <Router>
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/category/:categoryId" element={<Products />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/basket" element={<Basket />} />
-          <Route path="/faq" element={<Faqs />} />
-          <Route path="/faq/:id" element={<Faqs />} />
-          <Route path="/products/:categoryId" element={<Products />} />
-          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </div>

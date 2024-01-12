@@ -49,7 +49,6 @@ const Register = () => {
   console.log(errors.isPasswordEqual);
   console.log(errors);
 
-  event.preventDefault();
   try {
   const response = fetch('https://localhost:7162/api/client/register', {
     method: 'POST',

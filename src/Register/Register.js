@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Register.css';
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import './Register.css';
 
 const Register = () => {
 
@@ -11,11 +11,11 @@ const Register = () => {
     email:"",
     password: "",
     confirmPassword: "",
-    newsletter: "true"
+    newsletter: true
   });
   const [errors, setErrors] = useState({
-    isPasswordEqual: ' ',
-    isEmailOk:' '
+    isPasswordEqual: true,
+    isEmailOk: true
   });
 
   const handleChange = event => {
@@ -23,52 +23,48 @@ const Register = () => {
     setFormData({...formData, [name]: value });
   };
 
-  const emailValidation = (mail) => {return (/^[^\s@]+@[^\s@]+.[^\s@]+$/).test(mail)}
+  const emailValidation = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+    return (emailPattern).test(email);
+  }
 
   const handleSubmit = (event) => {
     
     event.preventDefault();
 
-  let passwordEqual = false;
-  if (formData.password === formData.confirmPassword) {
-    passwordEqual = true;
-  }
+    const passwordEqual = formData.password === formData.confirmPassword;
+    const emailOk = emailValidation(formData.email);
 
-  const emailOk = emailValidation(formData.email);
-
-  setErrors({
-    isPasswordEqual: passwordEqual,
-    isEmailOk: emailOk
-  });
-
-  if (passwordEqual && emailOk) {
-    const storageUser = JSON.stringify(formData);
-    sessionStorage.setItem("User", storageUser);
-  }
-
-  console.log(errors.isPasswordEqual);
-  console.log(errors);
-
-  fetch('https://localhost:7162/api/client/register', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formData),
-  })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Wystąpił błąd podczas przesyłania danych.');
-      }
-    })
-    .then(data => {
-      console.log('Dane przesłane pomyślnie:', data);
-    })
-    .catch(error => {
-      console.error('Wystąpił błąd:', error);
+    setErrors({
+      isPasswordEqual: passwordEqual,
+      isEmailOk: emailOk
     });
+
+    if (passwordEqual && emailOk) {
+      const storageUser = JSON.stringify(formData);
+      sessionStorage.setItem("User", storageUser);
+
+      fetch('https://localhost:7162/api/client/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Wystąpił błąd podczas przesyłania danych.');
+        }
+      })
+      .then(data => {
+        console.log('Dane przesłane pomyślnie:', data);
+      })
+      .catch(error => {
+        console.error('Wystąpił błąd:', error);
+      });
+    };
   };
     
   return (

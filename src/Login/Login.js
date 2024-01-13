@@ -39,7 +39,7 @@ const Login = () => {
     .then(data => {
       const [, payload] = data.split('.');
       const decodedPayload = JSON.parse(atob(payload));
-      const userId = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+      //const userId = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
       const userName = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
       setUserName(userName);
     })

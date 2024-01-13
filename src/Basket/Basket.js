@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Basket.css";
 import { Row, Col } from "react-bootstrap";
-import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 
 const Basket = () => {
   const [storedBasket, setStoredBasket] = useState([]);

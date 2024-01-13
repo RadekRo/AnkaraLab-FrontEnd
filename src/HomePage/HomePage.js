@@ -1,7 +1,6 @@
 import categories from "../TempData/CategoryData";
 import { Link } from "react-router-dom";
 import Promotion from "../Promotion/Promotion";
-console.log(categories);
 
 const HomePage = () => {
   return (

@@ -19,14 +19,13 @@ const Register = () => {
   });
   const [isUserRegistered, setIsUserRegistered] = useState(false);
 
-  const handleChange = event => {
-    const { name, value } = event.target;
+  const handleChange = ({ target: { name, value} }) => {
     setFormData({...formData, [name]: value });
   };
 
   const emailValidation = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
-    return (emailPattern).test(email);
+    return emailPattern.test(email);
   }
 
   const handleSubmit = (event) => {
@@ -66,91 +65,94 @@ const Register = () => {
     };
   };
     
-  return (
-      <div>
-        { isUserRegistered ? (
-          <div className="Register border rounded shadow bg-light mt-4 p-3">
-            <div>User registered!</div>
-          </div>
-          ) : (
-          <div className="Register border rounded shadow bg-light mt-4 p-3">
-          <form className='none' onSubmit={handleSubmit}>
+  const renderRegisteredUser = () => (
+    <div className="Register border rounded shadow bg-light mt-4 p-3">
+        <div>User registered!</div>
+    </div>
+  );
+
+  const renderRegistrationForm = () => (
+    <div className="Register border rounded shadow bg-light mt-4 p-3">
+        <form className='none' onSubmit={handleSubmit}>
           <h3>Rejstracja użytkownika</h3>
           <div>
-          <Form.Group controlId="Name" className='mb-2'>
-                    <Form.Label>Imię:</Form.Label>
-                    <Form.Control 
-                    type="text"
-                    name="name" 
-                    placeholder="Podaj swoje imię" 
-                    onChange={handleChange}
-                    required />
-                </Form.Group>
-          
-          <Form.Group controlId="Surname" className='mb-2'>
-                    <Form.Label>Nazwisko:</Form.Label>
-                    <Form.Control 
-                    type="text"
-                    name="surname" 
-                    placeholder="Podaj swoje Nazwisko" 
-                    onChange={handleChange}
-                    required />
-                </Form.Group>
-        </div>
-        <div>
-         
-          <Form.Group controlId="Email" className='mb-2'>
-                    <Form.Label>Email:</Form.Label>
-                    <Form.Control 
-                    type="text"
-                    name="email" 
-                    placeholder="Podaj email" 
-                    onChange={handleChange}
-                    required />
-                </Form.Group>
-                </div>
+            
+            <Form.Group controlId="Name" className='mb-2'>
+              <Form.Label>Imię:</Form.Label>
+              <Form.Control 
+                type="text"
+                name="name" 
+                placeholder="Podaj swoje imię" 
+                onChange={handleChange}
+                required />
+            </Form.Group>
+
+            <Form.Group controlId="Surname" className='mb-2'>
+              <Form.Label>Nazwisko:</Form.Label>
+              <Form.Control 
+                type="text"
+                name="surname" 
+                placeholder="Podaj swoje Nazwisko" 
+                onChange={handleChange}
+                required />
+            </Form.Group>
+          </div>
+          <div>
+            <Form.Group controlId="Email" className='mb-2'>
+              <Form.Label>Email:</Form.Label>
+              <Form.Control 
+                type="text"
+                name="email" 
+                placeholder="Podaj email" 
+                onChange={handleChange}
+                required />
+              </Form.Group>
+          </div>
         { !errors.isEmailOk && (
           <div className="bg-warning mt-1 mb-1 p-2 rounded">Co ty masz za adres mailowy??? Z Kambodży?</div>
         )}
-        <div>
-          
-          <Form.Group controlId="Password" className='mb-2'>
-                    <Form.Label>Hasło:</Form.Label>
-                    <Form.Control 
-                    type="password"
-                    name="password" 
-                    placeholder="Podaj swoje hasło" 
-                    onChange={handleChange}
-                    required />
-                </Form.Group>
-        </div>
-        <div>
-          
-          <Form.Group controlId="ConfirmPassword" className='mb-2'>
-                    <Form.Label>Powtórz hasło:</Form.Label>
-                    <Form.Control 
-                    type="password"
-                    name="confirmPassword" 
-                    placeholder="Potwierdź hasło" 
-                    onChange={handleChange}
-                    required />
-                </Form.Group>
-        </div>
+          <div>
+            <Form.Group controlId="Password" className='mb-2'>
+              <Form.Label>Hasło:</Form.Label>
+              <Form.Control 
+                type="password"
+                name="password" 
+                placeholder="Podaj swoje hasło" 
+                onChange={handleChange}
+                required />
+              </Form.Group>
+          </div>
+          <div>
+            <Form.Group controlId="ConfirmPassword" className='mb-2'>
+              <Form.Label>Powtórz hasło:</Form.Label>
+              <Form.Control 
+                type="password"
+                name="confirmPassword" 
+                placeholder="Potwierdź hasło" 
+                onChange={handleChange}
+                required />
+              </Form.Group>
+          </div>
         { !errors.isPasswordEqual && (
           <div className="bg-warning mt-1 mb-1 p-2 rounded">Błędnie powtórzone hasło!</div>
         )}
-        <div className="d-flex flex-column align-items-center">
-          <label>Newsletter</label>
-          <select className="form-select option-select mt-2" name='newsletter' value={formData.newsletter} onChange={handleChange}>
-            <option value={true}>Tak</option>
-            <option value={false}>Nie</option>
-          </select>
-        </div>
-        <button className="btn btn-success mt-4" type="submit">Rejestruj</button>
-      </form>
-      </div>
-          )}
+          <div className="d-flex flex-column align-items-center">
+            <label>Newsletter</label>
+            <select className="form-select option-select mt-2" name='newsletter' value={formData.newsletter} onChange={handleChange}>
+              <option value={true}>Tak</option>
+              <option value={false}>Nie</option>
+            </select>
+          </div>
+          <button className="btn btn-success mt-4" type="submit">Rejestruj</button>
+        </form>
+    </div>
+  );
+
+  return (
+      <div>
+        { isUserRegistered ? renderRegisteredUser() : renderRegistrationForm() }
       </div>
   );
 };
+
 export default Register;

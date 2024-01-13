@@ -31,11 +31,11 @@ const Login = () => {
 
   return (
     <div>
-      <div className="bg-info p-2 mb-2"> Login</div>
-      <div className="Login">
-      <form id="loginForm" onSubmit={handleSubmit}>
-       
-        <Form.Group controlId="login">
+      <div className="Register border rounded shadow bg-light mt-4 p-3">
+          <form className='none' onSubmit={handleSubmit}>
+          <h3>Logowanie</h3>
+          <div>
+          <Form.Group controlId="login" className='mb-2'>
                     <Form.Label>Login:</Form.Label>
                     <Form.Control 
                     type="text"
@@ -44,9 +44,9 @@ const Login = () => {
                     onChange={handleChange}
                     required />
                 </Form.Group>
-        <br />
+        
        
-        <Form.Group controlId="password">
+          <Form.Group controlId="password">
                     <Form.Label>Hasło:</Form.Label>
                     <Form.Control 
                     type="password"
@@ -55,14 +55,14 @@ const Login = () => {
                     onChange={handleChange}
                     required />
                 </Form.Group>
-        <br />
-        <br />
+          </div>
+        
         { (!loginAccepted) && (
         <div className="d-flex align-items-center justify-content-center mt-2">
           <p className="bg-danger text-white ps-4 pe-4 pt-2 pb-2"><span className="text-warning">Błędny email lub hasło.</span><br/>Spróbuj ponownie lub zarejestruj się!</p>
         </div>
         )}
-        <button type="submit" className="btn btn-success">Szalom</button>
+        <button type="submit" className="btn btn-success mt-4">Szalom</button>
       </form>
       </div>
     </div>

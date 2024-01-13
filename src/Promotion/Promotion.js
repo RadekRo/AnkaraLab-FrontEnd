@@ -29,27 +29,27 @@ const Promotion = () => {
 
     let currentPromotion = promotion.expiryDate > Date() ? promotion : createPromotion()
     return (
-        <div class="promotion-details">
-    <div class="bg">
-        <div class="info-row">
-            <span class="label">Promotion Id:</span>
-            <span class="value">{currentPromotion.id}</span>
+        <div className="promotion-details">
+    <div className="bg">
+        <div className="info-row">
+            <span className="label">Promotion Id:</span>
+            <span className="value">{currentPromotion.id}</span>
         </div>
-        <div class="info-row">
-            <span class="label">Data stworzenia promki:</span>
-            <span class="value">{currentPromotion.startDate.toDateString()}</span>
+        <div className="info-row">
+            <span className="label">Data stworzenia promki:</span>
+            <span className="value">{currentPromotion.startDate.toDateString()}</span>
         </div>
-        <div class="info-row">
-            <span class="label">Data wygaśnięcia promki:</span>
-            <span class="value">{currentPromotion.expiryDate.toDateString()}</span>
+        <div className="info-row">
+            <span className="label">Data wygaśnięcia promki:</span>
+            <span className="value">{currentPromotion.expiryDate.toDateString()}</span>
         </div>
-        <div class="info-row">
-            <span class="label">Id produktu na promce:</span>
-            <span class="value">{currentPromotion.promotedItemId}</span>
+        <div className="info-row">
+            <span className="label">Id produktu na promce:</span>
+            <span className="value">{currentPromotion.promotedItemId}</span>
         </div>
-        <div class="info-row">
-            <span class="label">Nazwa produktu na promce:</span>
-            <span class="value">{getProductById(currentPromotion.promotedItemId).name}</span>
+        <div className="info-row">
+            <span className="label">Nazwa produktu na promce:</span>
+            <span className="value">{getProductById(currentPromotion.promotedItemId).name}</span>
         </div>
     </div>
 </div>

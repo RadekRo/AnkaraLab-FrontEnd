@@ -68,10 +68,12 @@ const Register = () => {
     
   return (
       <div>
-        <div className="Register border rounded shadow bg-light mt-4 p-3">
         { isUserRegistered ? (
-          <div>User registered!</div>
+          <div className="Register border rounded shadow bg-light mt-4 p-3">
+            <div>User registered!</div>
+          </div>
           ) : (
+          <div className="Register border rounded shadow bg-light mt-4 p-3">
           <form className='none' onSubmit={handleSubmit}>
           <h3>Rejstracja użytkownika</h3>
           <div>
@@ -140,14 +142,14 @@ const Register = () => {
         <div className="d-flex flex-column align-items-center">
           <label>Newsletter</label>
           <select className="form-select option-select mt-2" name='newsletter' value={formData.newsletter} onChange={handleChange}>
-            <option value="true">Tak</option>
-            <option value="false">Nie</option>
+            <option value={true}>Tak</option>
+            <option value={false}>Nie</option>
           </select>
         </div>
         <button className="btn btn-success mt-4" type="submit">Rejestruj</button>
       </form>
-          )}
       </div>
+          )}
       </div>
   );
 };

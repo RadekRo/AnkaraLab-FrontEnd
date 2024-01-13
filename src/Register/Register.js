@@ -49,26 +49,26 @@ const Register = () => {
   console.log(errors.isPasswordEqual);
   console.log(errors);
 
-  try {
-  const response = fetch('https://localhost:7162/api/client/register', {
+  fetch('https://localhost:7162/api/client/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(formData),
-  });
-
-  if (response.ok) {
-    const data = response.json();
-    
-    console.log('Dane przesłane pomyślnie:', data);
-  } else {
-    console.error('Wystąpił błąd podczas przesyłania danych.');
-  }
-} catch (error) {
-  console.error('Wystąpił błąd:', error);
-}
-console.log(JSON.stringify(formData));
+  })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Wystąpił błąd podczas przesyłania danych.');
+      }
+    })
+    .then(data => {
+      console.log('Dane przesłane pomyślnie:', data);
+    })
+    .catch(error => {
+      console.error('Wystąpił błąd:', error);
+    });
   };
     
   return (

@@ -15,7 +15,8 @@ const Register = () => {
   });
   const [errors, setErrors] = useState({
     isPasswordEqual: true,
-    isEmailOk: true
+    isEmailOk: true,
+    isRegistrationSuccess: true
   });
   const [isUserRegistered, setIsUserRegistered] = useState(false);
 
@@ -36,6 +37,7 @@ const Register = () => {
     const emailOk = emailValidation(formData.email);
 
     setErrors({
+      ...errors,
       isPasswordEqual: passwordEqual,
       isEmailOk: emailOk
     });
@@ -56,10 +58,16 @@ const Register = () => {
           setIsUserRegistered(true);
           return response.json();
         } else {
-          throw new Error('Wystąpił błąd podczas przesyłania danych.');
-        }
-      })
+          setErrors({
+            ...errors,
+            isRegistrationSuccess: false
+          });
+        }})
       .catch(error => {
+        setErrors({
+          ...errors,
+          isRegistrationSuccess: false
+        });
         console.error('Wystąpił błąd:', error);
       });
     };
@@ -75,8 +83,10 @@ const Register = () => {
     <div className="Register border rounded shadow bg-light mt-4 p-3">
         <form className='none' onSubmit={handleSubmit}>
           <h3>Rejstracja użytkownika</h3>
+          { !errors.isRegistrationSuccess && (
+            <div className="bg-danger text-white mt-1 mb-1 p-2 rounded">Błąd transferu danych!<br/>Spróbuj ponownie później...<br/>Przepraszamy!</div>
+          )}
           <div>
-            
             <Form.Group controlId="Name" className='mb-2'>
               <Form.Label>Imię:</Form.Label>
               <Form.Control 
@@ -86,7 +96,6 @@ const Register = () => {
                 onChange={handleChange}
                 required />
             </Form.Group>
-
             <Form.Group controlId="Surname" className='mb-2'>
               <Form.Label>Nazwisko:</Form.Label>
               <Form.Control 
@@ -109,7 +118,7 @@ const Register = () => {
               </Form.Group>
           </div>
         { !errors.isEmailOk && (
-          <div className="bg-warning mt-1 mb-1 p-2 rounded">Co ty masz za adres mailowy??? Z Kambodży?</div>
+          <div className="bg-warning mt-1 mb-1 p-2 rounded">Błędny adres email!</div>
         )}
           <div>
             <Form.Group controlId="Password" className='mb-2'>

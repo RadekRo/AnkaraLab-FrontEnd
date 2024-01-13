@@ -7,24 +7,44 @@ const Login = () => {
     email: '',
     password: '',
   });
-  const [loginAccepted, setLoginAccepted] = useState(' ');
+  const [loginAccepted, setLoginAccepted] = useState(true);
 
   const handleChange = event => {
     const { name, value } = event.target;
     setLoginData({ ...loginData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const storedUser = JSON.parse(sessionStorage.getItem('User'));
-    if (storedUser) {
-      loginData.email === storedUser.email && 
-      loginData.password === storedUser.password ?
-      setLoginAccepted(true) : setLoginAccepted(false);
-    }
-    else {
-      setLoginAccepted(false);
-    }
+  console.log(JSON.stringify(loginData));
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    fetch('https://localhost:7162/api/client/login', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(loginData),
+})
+    .then(response => {
+
+        if (response.ok) {
+            return response.text();
+        } else {
+            throw new Error('Login failed');
+        }
+    })
+    .then(data => {
+      const [, payload] = data.split('.');
+      const decodedPayload = JSON.parse(atob(payload));
+      const userId = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+      const userName = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+      console.log("UserId: " + userId + " / Username: " + userName);
+
+    })
+    .catch(error => {
+        console.error('Wystąpił błąd:', error);
+    });
   };
 
   loginAccepted === true && console.log("Zalogowano pomyślnie");
@@ -35,11 +55,11 @@ const Login = () => {
           <form className='none' onSubmit={handleSubmit}>
           <h3>Logowanie</h3>
           <div>
-          <Form.Group controlId="login" className='mb-2'>
+          <Form.Group controlId="email" className='mb-2'>
                     <Form.Label>Login:</Form.Label>
                     <Form.Control 
                     type="text"
-                    name="login" 
+                    name="email" 
                     placeholder="Podaj swój email" 
                     onChange={handleChange}
                     required />

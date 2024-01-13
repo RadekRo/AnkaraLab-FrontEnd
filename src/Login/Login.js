@@ -32,6 +32,7 @@ const Login = () => {
             setIsUserLogged(true);
             return response.text();
         } else {
+            setLoginAccepted(false);
             throw new Error('Login failed');
         }
     })
@@ -43,7 +44,9 @@ const Login = () => {
       setUserName(userName);
     })
     .catch(error => {
-        console.error('Wystąpił błąd:', error);
+      setLoginAccepted(false);
+      //console.error('Wystąpił błąd:', error);
+      console.clear(); // wspaniałe rozwiązanie!
     });
   };
 
@@ -77,7 +80,7 @@ const Login = () => {
           <p className="bg-danger text-white ps-4 pe-4 pt-2 pb-2"><span className="text-warning">Błędny email lub hasło.</span><br/>Spróbuj ponownie lub zarejestruj się!</p>
         </div>
         )}
-        <button type="submit" className="btn btn-success mt-4">Szalom</button>
+        <button type="submit" className="btn btn-success mt-4">Loguj</button>
       </form>
     </div>
   );

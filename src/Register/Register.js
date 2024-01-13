@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Register.css';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 
 const Register = () => {
@@ -18,6 +19,7 @@ const Register = () => {
     isEmailOk: true,
     isRegistrationSuccess: true
   });
+
   const [isUserRegistered, setIsUserRegistered] = useState(false);
 
   const handleChange = ({ target: { name, value} }) => {
@@ -74,8 +76,9 @@ const Register = () => {
   };
     
   const renderRegisteredUser = () => (
-    <div className="Register border rounded shadow bg-light mt-4 p-3">
-        <div>User registered!</div>
+    <div className="Register border rounded shadow bg-success text-white mt-4 p-3">
+      <h4>Zarejestrowano!</h4>
+      <div>Możesz się teraz <Link to="/login" className='text-warning text-decoration-none'><strong>zalogować</strong></Link>.</div>
     </div>
   );
 

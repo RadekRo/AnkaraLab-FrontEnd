@@ -31,7 +31,7 @@ return(
     {category.name} </Link>
   </div>
   ))}
-  Dziś był zajebisty dzień
+  Dziś był zajebisty dzień, <strong>Trudno się nie zgodzić...</strong>
 </div>
 );
 }

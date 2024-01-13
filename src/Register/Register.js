@@ -14,6 +14,11 @@ const Register = () => {
     confirmPassword: "",
     newsletter: true
   });
+
+  // to be used by Gregory acc to corrected backEnd send
+  // use formDataToSend for fetch insetad of formData
+  // const { confirmPassword, ...formDataToSend } = formData;
+
   const [errors, setErrors] = useState({
     isPasswordEqual: true,
     isEmailOk: true,
@@ -22,7 +27,7 @@ const Register = () => {
 
   const [isUserRegistered, setIsUserRegistered] = useState(false);
 
-  const handleChange = ({ target: { name, value} }) => {
+  const handleChange = ({ target: { name, value } }) => {
     setFormData({...formData, [name]: value });
   };
 
@@ -75,7 +80,7 @@ const Register = () => {
     };
   };
     
-  const renderRegisteredUser = () => (
+  const renderRegisteredUserInfo = () => (
     <div className="Register border rounded shadow bg-success text-white mt-4 p-3">
       <h4>Zarejestrowano!</h4>
       <div>Możesz się teraz <Link to="/login" className='text-warning text-decoration-none'><strong>zalogować</strong></Link>.</div>
@@ -162,7 +167,7 @@ const Register = () => {
 
   return (
       <div>
-        { isUserRegistered ? renderRegisteredUser() : renderRegistrationForm() }
+        { isUserRegistered ? renderRegisteredUserInfo() : renderRegistrationForm() }
       </div>
   );
 };

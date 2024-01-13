@@ -40,8 +40,6 @@ const Products = () => {
   if (filteredFrames.length > 0) {
     showFrames = true;
   }
-  console.log(filteredFrames);
-  console.log(showFrames);
 
   const [selectedSize, setSelectedSize] = useState(
     filteredProducts.find((product) => product.isDefault)

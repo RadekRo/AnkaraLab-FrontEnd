@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Basket.css";
 import { Row, Col } from "react-bootstrap";
+import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 
 const Basket = () => {
   const [storedBasket, setStoredBasket] = useState([]);
@@ -22,9 +23,15 @@ const Basket = () => {
 
   return (
     <div>
-      <div>Basket logo</div>
+      
       {storedBasket.length < 1 ? (
-        <div>Twój koszyk jest pusty</div>
+        
+        <div>
+          <div>
+          <img src="/images/shopping-basket.png" alt="basket-logo" />
+          </div>
+          Twój koszyk jest pusty
+        </div>
       ) : (
         <div className="form-basket">
           {storedBasket.map((basketItem, index) => (

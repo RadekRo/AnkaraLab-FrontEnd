@@ -39,6 +39,7 @@ const Register = () => {
   const handleSubmit = (event) => {
     
     event.preventDefault();
+    console.log(formData)
 
     const passwordEqual = formData.password === formData.confirmPassword;
     const emailOk = emailValidation(formData.email);

@@ -14,6 +14,11 @@ const Register = () => {
     confirmPassword: "",
     newsletter: true
   });
+
+  // to be used by Gregory acc to corrected backEnd send
+  // use formDataToSend for fetch insetad of formData
+  // const { confirmPassword, ...formDataToSend } = formData;
+
   const [errors, setErrors] = useState({
     isPasswordEqual: true,
     isEmailOk: true,

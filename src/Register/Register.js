@@ -17,6 +17,7 @@ const Register = () => {
     isPasswordEqual: true,
     isEmailOk: true
   });
+  const [isUserRegistered, setIsUserRegistered] = useState(false);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -53,13 +54,11 @@ const Register = () => {
       })
       .then(response => {
         if (response.ok) {
+          setIsUserRegistered(true);
           return response.json();
         } else {
           throw new Error('Wystąpił błąd podczas przesyłania danych.');
         }
-      })
-      .then(data => {
-        console.log('Dane przesłane pomyślnie:', data);
       })
       .catch(error => {
         console.error('Wystąpił błąd:', error);
@@ -70,6 +69,9 @@ const Register = () => {
   return (
       <div>
         <div className="Register border rounded shadow bg-light mt-4 p-3">
+        { isUserRegistered ? (
+          <div>User registered!</div>
+          ) : (
           <form className='none' onSubmit={handleSubmit}>
           <h3>Rejstracja użytkownika</h3>
           <div>
@@ -144,6 +146,7 @@ const Register = () => {
         </div>
         <button className="btn btn-success mt-4" type="submit">Rejestruj</button>
       </form>
+          )}
       </div>
       </div>
   );

@@ -9,14 +9,14 @@ const Header = () => {
         </Link>
       </div>
       <div>
-        <Link to="/login" className="btn btn-secondary m-1">
-          Login
+        <Link to="/login" className="btn btn-success m-1">
+          Logowanie
         </Link>
-        <Link to="/register" className="btn btn-secondary m-1">
-          Register
+        <Link to="/register" className="btn btn-outline-primary m-1">
+          Rejestracja
         </Link>
-        <Link className="btn btn-info m-1" to="/basket">
-          Baskjet
+        <Link className="btn btn-secondary m-1" to="/basket">
+          Koszyk
         </Link>
       </div>
     </div>

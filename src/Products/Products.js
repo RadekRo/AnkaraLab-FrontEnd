@@ -148,8 +148,8 @@ const Products = () => {
             </select>
           </>
         )}
-        <div className="btn btn-info p-1" onClick={AddToBasket}>
-          dawaj baskjet
+        <div className="btn btn-info p-1 mt-2" onClick={AddToBasket}>
+          Dodaj do koszyka
         </div>
       </form>
     </div>

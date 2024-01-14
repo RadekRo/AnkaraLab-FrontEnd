@@ -29,31 +29,31 @@ const Promotion = () => {
 
     let currentPromotion = promotion.expiryDate > Date() ? promotion : createPromotion()
     return (
-        <div className="promotion-details">
-    <div className="bg">
-        <div className="info-row">
-            <span className="label">Promotion Id:</span>
-            <span className="value">{currentPromotion.id}</span>
-        </div>
-        <div className="info-row">
-            <span className="label">Data stworzenia promki:</span>
-            <span className="value">{currentPromotion.startDate.toDateString()}</span>
-        </div>
-        <div className="info-row">
-            <span className="label">Data wygaśnięcia promki:</span>
-            <span className="value">{currentPromotion.expiryDate.toDateString()}</span>
-        </div>
-        <div className="info-row">
-            <span className="label">Id produktu na promce:</span>
-            <span className="value">{currentPromotion.promotedItemId}</span>
-        </div>
-        <div className="info-row">
-            <span className="label">Nazwa produktu na promce:</span>
-            <span className="value">{getProductById(currentPromotion.promotedItemId).name}</span>
+    <div className="promotion-details">
+        <img src='/images/promotionBackground.jpg' alt='' />
+        <div className="bg">
+            <div className="info-row">
+                <span className="label">Promotion Id:</span>
+                <span className="value">{currentPromotion.id}</span>
+            </div>
+            <div className="info-row">
+                <span className="label">Data stworzenia promki:</span>
+                <span className="value">{currentPromotion.startDate.toDateString()}</span>
+            </div>
+            <div className="info-row">
+                <span className="label">Data wygaśnięcia promki:</span>
+                <span className="value">{currentPromotion.expiryDate.toDateString()}</span>
+            </div>
+            <div className="info-row">
+                <span className="label">Id produktu na promce:</span>
+                <span className="value">{currentPromotion.promotedItemId}</span>
+            </div>
+            <div className="info-row">
+                <span className="label">Nazwa produktu na promce:</span>
+                <span className="value">{getProductById(currentPromotion.promotedItemId).name}</span>
+            </div>
         </div>
     </div>
-</div>
-
     )
-}
+};
 export default Promotion;

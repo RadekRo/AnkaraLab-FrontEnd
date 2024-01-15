@@ -27,8 +27,8 @@ fetch('https://localhost:7162/api/category', {
 return( 
 <div>
   {categories.map((category) => (  
-  <div className="btn btn-warning btn-lg m-2" key={category.id}><Link to={`/category/${category.id}`} className="text-decoration-none text-dark">
-    {category.name} </Link>
+  <div className="btn btn-warning btn-lg m-2" key={category.id}>
+    <Link to={`/category/${category.id}`} className="text-decoration-none text-dark">{category.name} </Link>
   </div>
   ))}
   Dziś był zajebisty dzień, <strong>Trudno się nie zgodzić...</strong>

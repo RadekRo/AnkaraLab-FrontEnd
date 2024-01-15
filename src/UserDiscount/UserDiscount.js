@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import userData from "../TempData/UserData";
+
 
 const UserDiscount = () => {
     const loggedUser = false
@@ -7,7 +8,7 @@ const UserDiscount = () => {
     const [userName, setUserName] = useState()
     
 
-    getUserPromo = () => {
+   const GetUserPromo = () => {
         useEffect(() => { 
             fetch('https://localhost:7162/api/client/{id}', {
               method: 'GET'
@@ -26,12 +27,17 @@ const UserDiscount = () => {
                 
               .catch(error => {
                   console.error('Wystąpił błąd:', error);
-              });
+              }, []);
             })};
+
+            GetUserPromo();
+          
 
     return(
     <div>
-
+        {userName}
+        {actualDiscount}
+A ciul wie co tu zreturnować...
     </div>)
 }
 export default UserDiscount;

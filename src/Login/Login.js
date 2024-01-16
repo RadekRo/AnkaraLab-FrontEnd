@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import './Login.css';
 import { Form } from "react-bootstrap";
 import UserDiscount from "../UserDiscount/UserDiscount";
@@ -54,13 +54,12 @@ const Login = () => {
       setPassedData({ userId: userId,
       userName: userName,
       isUserLogged: isUserLogged})
-      console.log(passedData)
     })
     
     .catch(error => {
       setLoginAccepted(false);
-      //console.error('Wystąpił błąd:', error);
-      // console.clear(); // wspaniałe rozwiązanie!
+      console.error('Wystąpił błąd:', error);
+      console.clear(); // wspaniałe rozwiązanie!
     });
   };
 

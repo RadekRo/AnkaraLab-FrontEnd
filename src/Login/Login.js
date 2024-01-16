@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './Login.css';
 import { Form } from "react-bootstrap";
+import UserDiscount from "../UserDiscount/UserDiscount";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -10,6 +11,13 @@ const Login = () => {
   const [loginAccepted, setLoginAccepted] = useState(true);
   const [isUserLogged, setIsUserLogged] = useState(false);
   const [userName, setUserName] = useState();
+  const [userId, setUserId] = useState();
+  const [passedData, setPassedData] = useState({
+    userId: "",
+    userName: "",
+    isUserLogged: false
+
+  })
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -39,14 +47,20 @@ const Login = () => {
     .then(data => {
       const [, payload] = data.split('.');
       const decodedPayload = JSON.parse(atob(payload));
-      //const userId = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+      const userId = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
       const userName = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
       setUserName(userName);
+      setUserId(userId);
+      setPassedData({ userId: userId,
+      userName: userName,
+      isUserLogged: isUserLogged})
+      console.log(passedData)
     })
+    
     .catch(error => {
       setLoginAccepted(false);
       //console.error('Wystąpił błąd:', error);
-      console.clear(); // wspaniałe rozwiązanie!
+      // console.clear(); // wspaniałe rozwiązanie!
     });
   };
 
@@ -95,6 +109,7 @@ const Login = () => {
   return (
     <div>
       { isUserLogged ? renderUserInfo() : renderLoginForm() }
+      <UserDiscount userId={passedData.userId} userName={passedData.userName} isUserLogged={passedData.isUserLogged}/>
     </div>
   );
 };

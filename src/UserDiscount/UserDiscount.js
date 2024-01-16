@@ -1,43 +1,43 @@
 import { useState, useEffect } from "react";
-import userData from "../TempData/UserData";
+import React from "react";
 
-
-const UserDiscount = () => {
-    const loggedUser = false
-    const[actualDiscount, getActualDiscount] = useState();
-    const [userName, setUserName] = useState()
-    
+const UserDiscount = ({userId, userName, isUserLogged}) => {
+    const [myUserName, setUserName] = useState()
+    const [actualDiscount, setActualDiscount] = useState()
+    console.log(userId, userName, isUserLogged)
 
    const GetUserPromo = () => {
         useEffect(() => { 
-            fetch('https://localhost:7162/api/client/{id}', {
+            fetch(`https://localhost:7162/api/client/${userId}`, {
               method: 'GET'
             })
-              .then(response => {
+            .then(response => {
               if (response.ok) {
-              return response.json();
+                return response.json();
               } 
               else {
-              throw new Error('Couldnt load any data');
+                throw new Error('Couldnt load any data');
               }
-              })
-              .then(
-                data => setUserName(data.userName), 
-                data => getActualDiscount(data.Discount) )
-                
-              .catch(error => {
+            })
+            .then(data => (
+              console.log(data),
+              setUserName(data.name),
+              setActualDiscount(data.discount) 
+            ))
+            .catch(error => {
                   console.error('Wystąpił błąd:', error);
               }, []);
             })};
 
             GetUserPromo();
-          
-
-    return(
-    <div>
-        {userName}
-        {actualDiscount}
-A ciul wie co tu zreturnować...
-    </div>)
-}
-export default UserDiscount;
+    return (
+        <div>
+          {myUserName && (
+            <p>Witaj {myUserName} <br/>
+            Twój aktualny upust: {actualDiscount} 
+            </p>
+          )}
+        </div>
+      )
+  }
+  export default UserDiscount;

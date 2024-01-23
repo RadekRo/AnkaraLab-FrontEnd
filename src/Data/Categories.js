@@ -31,7 +31,6 @@ return(
     <Link to={`/category/${category.id}`} className="text-decoration-none text-dark">{category.name} </Link>
   </div>
   ))}
-  Dziś był zajebisty dzień, <strong>Trudno się nie zgodzić...</strong>
 </div>
 );
 }

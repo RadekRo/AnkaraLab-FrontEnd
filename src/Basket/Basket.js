@@ -56,7 +56,7 @@ const Basket = () => {
       )}
       <div>
       <Link to="/checkout">
-          <button>Podsumowanie</button>
+          <button>checkout</button>
         </Link>
       </div>
     </div>

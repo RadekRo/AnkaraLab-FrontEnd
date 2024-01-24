@@ -9,16 +9,14 @@ const Login = () => {
     password: '',
   });
   const [loginAccepted, setLoginAccepted] = useState(true);
-  const [isUserLogged, setIsUserLogged] = useState(false);
-  const [userName, setUserName] = useState();
-  const [userId, setUserId] = useState();
-  const [passedData, setPassedData] = useState({
+  const [userData, setUserData] = useState({
     userId: "",
     userName: "",
-    isUserLogged: false
+    isUserLogged: false,
+    loginAccepted: true
 
   })
-
+  console.log(userData);
   const handleChange = event => {
     const { name, value } = event.target;
     setLoginData({ ...loginData, [name]: value });
@@ -37,7 +35,7 @@ const Login = () => {
     .then(response => {
 
         if (response.ok) {
-            setIsUserLogged(true);
+            setUserData({isUserLogged : true});
             return response.text();
         } else {
             setLoginAccepted(false);
@@ -49,11 +47,10 @@ const Login = () => {
       const decodedPayload = JSON.parse(atob(payload));
       const userId = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
       const userName = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-      setUserName(userName);
-      setUserId(userId);
-      setPassedData({ userId: userId,
+      setUserData({ userId: userId,
       userName: userName,
-      isUserLogged: isUserLogged})
+      isUserLogged: true})
+      console.log("local storage: " + userData.userId);
     })
     
     .catch(error => {
@@ -98,17 +95,19 @@ const Login = () => {
     </div>
   );
 
-  const renderUserInfo = () => (
+  const renderUserInfo = () => {
+    localStorage.setItem("User", JSON.stringify(userData));
+    (
     <div className="Register border rounded shadow bg-success text-white mt-4 p-3">
         <h4>Zalogowano!</h4>
-        {userName} - witaj!
+        {userData.userName} - witaj!
     </div>
-  )
+  )};
 
   return (
     <div>
-      { isUserLogged ? renderUserInfo() : renderLoginForm() }
-      <UserDiscount userId={passedData.userId} userName={passedData.userName} isUserLogged={passedData.isUserLogged}/>
+      { userData.isUserLogged ? renderUserInfo() : renderLoginForm() }
+      <UserDiscount userId={userData.userId} userName={userData.userName} isUserLogged={userData.isUserLogged}/>
     </div>
   );
 };

@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 
-const shippingAddress = () => {}
+//const shippingAddress = () => {
+    //const fetchedData = [data, setData] = useState();
+//}
 const Checkout = () => {
     const storedBasket = JSON.parse(sessionStorage.getItem("Basket"));
     const userData = JSON.parse(localStorage.getItem("User"));

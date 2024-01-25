@@ -1,19 +1,19 @@
 import { useParams } from "react-router";
 import products from "../TempData/ProductData";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import papers from "../TempData/PaperData";
 import crops from "../TempData/CropData";
 import frames from "../TempData/FrameData";
-import "./Products.css";
+// import "./Products.css";
 
 const Products = () => {
   // pobranie parametrów z adresu w przegladarce
   const { categoryId } = useParams();
   // symulacja endpointu na backendzie
-  const getProductByCategory = (id) => {
-    return products.filter((product) => product.categoryId === parseInt(id));
-  };
+  // const getProductByCategory = (id) => {
+  //   return products.filter((product) => product.categoryId === parseInt(id));
+  // };
   const getPapersByCategory = (id) => {
     return papers.filter((paper) => paper.categoryId === parseInt(id));
   };
@@ -32,7 +32,28 @@ const Products = () => {
     });
   };
   // symulacja fetcha
-  const filteredProducts = getProductByCategory(categoryId);
+  const [filteredProducts, setProductByCategory]= useState([]);
+
+  useEffect((categoryId) => { 
+fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
+  method: 'GET'
+})
+  .then(response => {
+  if (response.ok) {
+  return response.json();
+  } 
+  else {
+  throw new Error('Couldnt get any data');
+  }
+  })
+  .then(
+    data => setProductByCategory(data) )
+
+  .catch(error => {
+      console.error('Wystąpił błąd:', error);
+  });
+},[]);
+
   const filteredPapers = getPapersByCategory(categoryId);
   const filteredCrops = getCropsByCategory(categoryId);
   const filteredFrames = getFramesByCategory(categoryId);
@@ -95,8 +116,8 @@ const Products = () => {
           onChange={handleSizeChange}
         >
           {filteredProducts.map((product) => (
-            <option key={product.id} value={product.id}>
-              {product.name}
+            <option key={product.Id} value={product.Id}>
+              {product.Name}
             </option>
           ))}
         </select>

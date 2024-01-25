@@ -52,6 +52,7 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
   .catch(error => {
       console.error('Wystąpił błąd:', error);
   });
+  console.log(selectedSize)
 },[categoryId]);
 
   // const filteredPapers = getPapersByCategory(categoryId);
@@ -62,9 +63,9 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
   //   showFrames = true;
   // }
 
-  // const [selectedSize, setSelectedSize] = useState(
-  //   filteredProducts.find((product) => product.isDefault)
-  // );
+  const [selectedSize, setSelectedSize] = useState(
+    filteredProducts.find((product) => product.isDefault)
+  );
   // const [selectedPaper, setSelectedPaper] = useState(
   //   filteredPapers.find((paper) => paper.isDefault)
   // );
@@ -75,16 +76,16 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
   //   filteredFrames.find((frame) => frame.isDefault)
   // );
 
-  // const basketItem = {
-  //   size: selectedSize.name,
+  const basketItem = {
+    size: selectedSize,
   //   paper: selectedPaper.name,
   //   crop: selectedCrop.name,
   //   frame: selectedFrame.name,
-  // };
+  };
 
-  // const handleSizeChange = (event) => {
-  //   setSelectedSize(filteredProducts[event.target.value - 1]);
-  // };
+  const handleSizeChange = (event) => {
+    setSelectedSize(filteredProducts.Size);
+  };
   // const handlePaperChange = (event) => {
   //   setSelectedPaper(filteredPapers[event.target.value - 1]);
   // };
@@ -103,6 +104,7 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
   //   sessionStorage.setItem("Basket", JSON.stringify(storageBasket));
   // };
   // console.log(JSON.parse(sessionStorage.getItem("Basket")));
+  
   return (
     
     <div className="text-center">
@@ -113,8 +115,8 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
           className="form-select select-color"
           id="produkt"
           name="size"
-          // value={selectedSize.id}
-          // onChange={handleSizeChange}
+          value={selectedSize}
+          onChange={handleSizeChange}
         >
           {filteredProducts.map((product) => (
             <option key={product.Id} value={product.Id}>
@@ -122,6 +124,8 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
             </option>
           ))}
         </select>
+        
+        
         <br />
         {/* <label htmlFor="papier">Wybierz papier:</label>
         <select
@@ -175,7 +179,9 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
         </div> */}
       </form>
     </div>
+    
   );
+  
 };
 
 export default Products;

@@ -14,27 +14,27 @@ const Products = () => {
   // const getProductByCategory = (id) => {
   //   return products.filter((product) => product.categoryId === parseInt(id));
   // };
-  const getPapersByCategory = (id) => {
-    return papers.filter((paper) => paper.categoryId === parseInt(id));
-  };
-  const getCropsByCategory = (id) => {
-    return crops.filter((crop) => {
-      const categoryIdString = crop.categoryId.toString();
-      const idString = id.toString();
-      return categoryIdString.includes(idString);
-    });
-  };
-  const getFramesByCategory = (id) => {
-    return frames.filter((frame) => {
-      const categoryIdString = frame.categoryId.toString();
-      const idString = id.toString();
-      return categoryIdString.includes(idString);
-    });
-  };
+  // const getPapersByCategory = (id) => {
+  //   return papers.filter((paper) => paper.categoryId === parseInt(id));
+  // };
+  // const getCropsByCategory = (id) => {
+  //   return crops.filter((crop) => {
+  //     const categoryIdString = crop.categoryId.toString();
+  //     const idString = id.toString();
+  //     return categoryIdString.includes(idString);
+  //   });
+  // };
+  // const getFramesByCategory = (id) => {
+  //   return frames.filter((frame) => {
+  //     const categoryIdString = frame.categoryId.toString();
+  //     const idString = id.toString();
+  //     return categoryIdString.includes(idString);
+  //   });
+  // };
   // symulacja fetcha
   const [filteredProducts, setProductByCategory]= useState([]);
 
-  useEffect((categoryId) => { 
+  useEffect(() => { 
 fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
   method: 'GET'
 })
@@ -52,58 +52,59 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
   .catch(error => {
       console.error('Wystąpił błąd:', error);
   });
-},[]);
+},[categoryId]);
 
-  const filteredPapers = getPapersByCategory(categoryId);
-  const filteredCrops = getCropsByCategory(categoryId);
-  const filteredFrames = getFramesByCategory(categoryId);
-  let showFrames = false;
-  if (filteredFrames.length > 0) {
-    showFrames = true;
-  }
+  // const filteredPapers = getPapersByCategory(categoryId);
+  // const filteredCrops = getCropsByCategory(categoryId);
+  // const filteredFrames = getFramesByCategory(categoryId);
+  // let showFrames = false;
+  // if (filteredFrames.length > 0) {
+  //   showFrames = true;
+  // }
 
-  const [selectedSize, setSelectedSize] = useState(
-    filteredProducts.find((product) => product.isDefault)
-  );
-  const [selectedPaper, setSelectedPaper] = useState(
-    filteredPapers.find((paper) => paper.isDefault)
-  );
-  const [selectedCrop, setSelectedCrop] = useState(
-    filteredCrops.find((crop) => crop.isDefault)
-  );
-  const [selectedFrame, setSelectedFrame] = useState(
-    filteredFrames.find((frame) => frame.isDefault)
-  );
+  // const [selectedSize, setSelectedSize] = useState(
+  //   filteredProducts.find((product) => product.isDefault)
+  // );
+  // const [selectedPaper, setSelectedPaper] = useState(
+  //   filteredPapers.find((paper) => paper.isDefault)
+  // );
+  // const [selectedCrop, setSelectedCrop] = useState(
+  //   filteredCrops.find((crop) => crop.isDefault)
+  // );
+  // const [selectedFrame, setSelectedFrame] = useState(
+  //   filteredFrames.find((frame) => frame.isDefault)
+  // );
 
-  const basketItem = {
-    size: selectedSize.name,
-    paper: selectedPaper.name,
-    crop: selectedCrop.name,
-    frame: selectedFrame.name,
-  };
+  // const basketItem = {
+  //   size: selectedSize.name,
+  //   paper: selectedPaper.name,
+  //   crop: selectedCrop.name,
+  //   frame: selectedFrame.name,
+  // };
 
-  const handleSizeChange = (event) => {
-    setSelectedSize(filteredProducts[event.target.value - 1]);
-  };
-  const handlePaperChange = (event) => {
-    setSelectedPaper(filteredPapers[event.target.value - 1]);
-  };
-  const handleCropChange = (event) => {
-    setSelectedCrop(filteredCrops[event.target.value - 1]);
-  };
-  const handleFrameChange = (event) => {
-    setSelectedFrame(filteredFrames[event.target.value - 1]);
-  };
-  const AddToBasket = () => {
-    let storageBasket = JSON.parse(sessionStorage.getItem("Basket"));
-    if (!storageBasket) {
-      storageBasket = [];
-    }
-    storageBasket.push(basketItem);
-    sessionStorage.setItem("Basket", JSON.stringify(storageBasket));
-  };
-  console.log(JSON.parse(sessionStorage.getItem("Basket")));
+  // const handleSizeChange = (event) => {
+  //   setSelectedSize(filteredProducts[event.target.value - 1]);
+  // };
+  // const handlePaperChange = (event) => {
+  //   setSelectedPaper(filteredPapers[event.target.value - 1]);
+  // };
+  // const handleCropChange = (event) => {
+  //   setSelectedCrop(filteredCrops[event.target.value - 1]);
+  // };
+  // const handleFrameChange = (event) => {
+  //   setSelectedFrame(filteredFrames[event.target.value - 1]);
+  // };
+  // const AddToBasket = () => {
+  //   let storageBasket = JSON.parse(sessionStorage.getItem("Basket"));
+  //   if (!storageBasket) {
+  //     storageBasket = [];
+  //   }
+  //   storageBasket.push(basketItem);
+  //   sessionStorage.setItem("Basket", JSON.stringify(storageBasket));
+  // };
+  // console.log(JSON.parse(sessionStorage.getItem("Basket")));
   return (
+    
     <div className="text-center">
       <h1>Products</h1>
       <form className="form-product">
@@ -112,17 +113,17 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
           className="form-select select-color"
           id="produkt"
           name="size"
-          value={selectedSize.id}
-          onChange={handleSizeChange}
+          // value={selectedSize.id}
+          // onChange={handleSizeChange}
         >
           {filteredProducts.map((product) => (
             <option key={product.Id} value={product.Id}>
-              {product.Name}
+              {product.description}
             </option>
           ))}
         </select>
         <br />
-        <label htmlFor="papier">Wybierz papier:</label>
+        {/* <label htmlFor="papier">Wybierz papier:</label>
         <select
           className="form-select select-color"
           id="papier"
@@ -171,7 +172,7 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
         )}
         <div className="btn btn-info p-1 mt-2" onClick={AddToBasket}>
           Dodaj do koszyka
-        </div>
+        </div> */}
       </form>
     </div>
   );

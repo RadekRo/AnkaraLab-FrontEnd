@@ -1,6 +1,7 @@
-import { useState } from "react";
+import {  useState } from "react";
 import './Login.css';
 import { Form } from "react-bootstrap";
+import UserDiscount from "../UserDiscount/UserDiscount";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -8,9 +9,14 @@ const Login = () => {
     password: '',
   });
   const [loginAccepted, setLoginAccepted] = useState(true);
-  const [isUserLogged, setIsUserLogged] = useState(false);
-  const [userName, setUserName] = useState();
+  const [userData, setUserData] = useState({
+    userId: "",
+    userName: "",
+    isUserLogged: false,
+    loginAccepted: true
 
+  })
+  console.log(userData);
   const handleChange = event => {
     const { name, value } = event.target;
     setLoginData({ ...loginData, [name]: value });
@@ -29,7 +35,7 @@ const Login = () => {
     .then(response => {
 
         if (response.ok) {
-            setIsUserLogged(true);
+            setUserData({isUserLogged : true});
             return response.text();
         } else {
             setLoginAccepted(false);
@@ -39,13 +45,17 @@ const Login = () => {
     .then(data => {
       const [, payload] = data.split('.');
       const decodedPayload = JSON.parse(atob(payload));
-      //const userId = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+      const userId = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
       const userName = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-      setUserName(userName);
+      setUserData({ userId: userId,
+      userName: userName,
+      isUserLogged: true})
+      console.log("local storage: " + userData.userId);
     })
+    
     .catch(error => {
       setLoginAccepted(false);
-      //console.error('Wystąpił błąd:', error);
+      console.error('Wystąpił błąd:', error);
       console.clear(); // wspaniałe rozwiązanie!
     });
   };
@@ -85,16 +95,19 @@ const Login = () => {
     </div>
   );
 
-  const renderUserInfo = () => (
+  const renderUserInfo = () => {
+    localStorage.setItem("User", JSON.stringify(userData));
+    (
     <div className="Register border rounded shadow bg-success text-white mt-4 p-3">
         <h4>Zalogowano!</h4>
-        {userName} - witaj!
+        {userData.userName} - witaj!
     </div>
-  )
+  )};
 
   return (
     <div>
-      { isUserLogged ? renderUserInfo() : renderLoginForm() }
+      { userData.isUserLogged ? renderUserInfo() : renderLoginForm() }
+      <UserDiscount userId={userData.userId} userName={userData.userName} isUserLogged={userData.isUserLogged}/>
     </div>
   );
 };

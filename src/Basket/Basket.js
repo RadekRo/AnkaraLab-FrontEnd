@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Basket.css";
 import { Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Basket = () => {
   const [storedBasket, setStoredBasket] = useState([]);
@@ -53,6 +54,11 @@ const Basket = () => {
           ))}
         </div>
       )}
+      <div>
+      <Link to="/checkout">
+          <button>checkout</button>
+        </Link>
+      </div>
     </div>
   );
 };

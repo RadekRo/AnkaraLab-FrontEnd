@@ -6,6 +6,7 @@ import Login from "./Login/Login";
 import Header from "./Shared/Header";
 import Basket from "./Basket/Basket";
 import Register from "./Register/Register";
+import Checkout from "./Checkout/Checkout";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/basket" element={<Basket />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Router>
     </div>

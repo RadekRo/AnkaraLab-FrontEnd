@@ -1,22 +1,24 @@
 import {  useState } from "react";
-import './Login.css';
-import { Form } from "react-bootstrap";
 import UserDiscount from "../UserDiscount/UserDiscount";
+import './Login.css';
+import LoginForm from "./LoginForm";
+
+const API_URL = 'https://localhost:7162/api/client/login';
 
 const Login = () => {
-  const [loginData, setLoginData] = useState({
-    email: '',
-    password: '',
-  });
+  const [loginData, setLoginData] = useState({ email: '', password: '' });
+  const [userData, setUserData] = useState({ userId: "", userName: "", isUserLogged: false})
   const [loginAccepted, setLoginAccepted] = useState(true);
-  const [userData, setUserData] = useState({
-    userId: "",
-    userName: "",
-    isUserLogged: false,
-    loginAccepted: true
+  const [isUserLogged, setIsUserLogged] = useState(false);
 
-  })
-  console.log(userData);
+  const decodeJWT = (jwt) => {
+    const [, payload] = jwt.split('.');
+    const decodedPayload = JSON.parse(atob(payload));
+    const userId = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+    const userName = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+    return { userId, userName };
+  }
+
   const handleChange = event => {
     const { name, value } = event.target;
     setLoginData({ ...loginData, [name]: value });
@@ -25,7 +27,7 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    fetch('https://localhost:7162/api/client/login', {
+    fetch(API_URL, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -33,67 +35,26 @@ const Login = () => {
     body: JSON.stringify(loginData),
 })
     .then(response => {
-
         if (response.ok) {
-            setUserData({isUserLogged : true});
+            setIsUserLogged(true);
             return response.text();
         } else {
             setLoginAccepted(false);
             throw new Error('Login failed');
         }
     })
+
     .then(data => {
-      const [, payload] = data.split('.');
-      const decodedPayload = JSON.parse(atob(payload));
-      const userId = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
-      const userName = decodedPayload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-      setUserData({ userId: userId,
-      userName: userName,
-      isUserLogged: true})
-      console.log("local storage: " + userData.userId);
+      const { userId, userName } = decodeJWT(data);
+      setUserData({ userId, userName})
     })
-    
+
     .catch(error => {
       setLoginAccepted(false);
       console.error('Wystąpił błąd:', error);
       console.clear(); // wspaniałe rozwiązanie!
     });
   };
-
-  const renderLoginForm = () => (
-    <div className="Register border rounded shadow bg-light mt-4 p-3">
-      <form className='none' onSubmit={handleSubmit}>
-        <h3>Logowanie</h3>
-        <div>
-          <Form.Group controlId="email" className='mb-2'>
-            <Form.Label>Login:</Form.Label>
-            <Form.Control 
-              type="text"
-              name="email" 
-              placeholder="Podaj swój email" 
-              onChange={handleChange}
-              required />
-          </Form.Group>
-          <Form.Group controlId="password">
-            <Form.Label>Hasło:</Form.Label>
-            <Form.Control 
-              type="password"
-              name="password" 
-              placeholder="Podaj swoje hasło" 
-              onChange={handleChange}
-              required />
-          </Form.Group>
-        </div>
-        
-        { (!loginAccepted) && (
-        <div className="d-flex align-items-center justify-content-center mt-2">
-          <p className="bg-danger text-white ps-4 pe-4 pt-2 pb-2"><span className="text-warning">Błędny email lub hasło.</span><br/>Spróbuj ponownie lub zarejestruj się!</p>
-        </div>
-        )}
-        <button type="submit" className="btn btn-success mt-4">Loguj</button>
-      </form>
-    </div>
-  );
 
   const renderUserInfo = () => {
     localStorage.setItem("User", JSON.stringify(userData));
@@ -106,8 +67,14 @@ const Login = () => {
 
   return (
     <div>
-      { userData.isUserLogged ? renderUserInfo() : renderLoginForm() }
-      <UserDiscount userId={userData.userId} userName={userData.userName} isUserLogged={userData.isUserLogged}/>
+      { isUserLogged ? (
+        <>
+          { renderUserInfo() }
+          <UserDiscount userId={userData.userId} userName={userData.userName} isUserLogged={userData.isUserLogged}/>
+        </>
+      ) : (
+          <LoginForm handleChange={handleChange} handleSubmit={handleSubmit} loginAccepted={loginAccepted} />
+      )}
     </div>
   );
 };

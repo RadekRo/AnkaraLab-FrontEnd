@@ -10,6 +10,42 @@ import frames from "../TempData/FrameData";
 const Products = () => {
   // pobranie parametrów z adresu w przegladarce
   const { categoryId } = useParams();
+  const [filteredProducts, setProductByCategory]= useState([]);
+  const [selectedSize, setSelectedSize] = useState(() => {
+    const defaultSize = filteredProducts.find((product) => product.isDefault);
+    return defaultSize ? defaultSize.Size : "NO DEF SIZE";
+  });
+  const handleSizeChange = (event) => {
+      setSelectedSize(event.target.value);};
+  const basketItem = {
+            size: selectedSize,
+      //    paper: selectedPaper.name,
+      //    crop: selectedCrop.name,
+      //    frame: selectedFrame.name,
+      };
+    
+
+  useEffect(() => { 
+fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
+  method: 'GET'
+})
+  .then(response => {
+  if (response.ok) {
+  return response.json();
+  } 
+  else {
+  throw new Error('Couldnt get any data');
+  }
+  })
+  .then(
+    data => {setProductByCategory(data);
+    console.log(selectedSize);} )
+
+  .catch(error => {
+      console.error('Wystąpił błąd:', error);
+  });
+},[categoryId, selectedSize]);
+
   // symulacja endpointu na backendzie
   // const getProductByCategory = (id) => {
   //   return products.filter((product) => product.categoryId === parseInt(id));
@@ -32,28 +68,7 @@ const Products = () => {
   //   });
   // };
   // symulacja fetcha
-  const [filteredProducts, setProductByCategory]= useState([]);
-
-  useEffect(() => { 
-fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
-  method: 'GET'
-})
-  .then(response => {
-  if (response.ok) {
-  return response.json();
-  } 
-  else {
-  throw new Error('Couldnt get any data');
-  }
-  })
-  .then(
-    data => setProductByCategory(data) )
-
-  .catch(error => {
-      console.error('Wystąpił błąd:', error);
-  });
-  console.log(selectedSize)
-},[categoryId]);
+  
 
   // const filteredPapers = getPapersByCategory(categoryId);
   // const filteredCrops = getCropsByCategory(categoryId);
@@ -63,9 +78,7 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
   //   showFrames = true;
   // }
 
-  const [selectedSize, setSelectedSize] = useState(
-    filteredProducts.find((product) => product.isDefault)
-  );
+  
   // const [selectedPaper, setSelectedPaper] = useState(
   //   filteredPapers.find((paper) => paper.isDefault)
   // );
@@ -76,16 +89,8 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
   //   filteredFrames.find((frame) => frame.isDefault)
   // );
 
-  const basketItem = {
-    size: selectedSize,
-  //   paper: selectedPaper.name,
-  //   crop: selectedCrop.name,
-  //   frame: selectedFrame.name,
-  };
-
-  const handleSizeChange = (event) => {
-    setSelectedSize(filteredProducts.Size);
-  };
+  
+  
   // const handlePaperChange = (event) => {
   //   setSelectedPaper(filteredPapers[event.target.value - 1]);
   // };
@@ -119,7 +124,7 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
           onChange={handleSizeChange}
         >
           {filteredProducts.map((product) => (
-            <option key={product.Id} value={product.Id}>
+            <option key={product.Id} value={product.size}>
               {product.description}
             </option>
           ))}

@@ -7,7 +7,7 @@ const API_URL = 'https://localhost:7162/api/client/login';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: '', password: '' });
-  const [userData, setUserData] = useState({ userId: "", userName: "", isUserLogged: false})
+  const [userData, setUserData] = useState({ userId: "", userName: ""});
   const [loginAccepted, setLoginAccepted] = useState(true);
   const [isUserLogged, setIsUserLogged] = useState(false);
 

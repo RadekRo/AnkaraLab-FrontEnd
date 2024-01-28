@@ -33,6 +33,7 @@ const Products = () => {
   // };
   // symulacja fetcha
   const [filteredProducts, setProductByCategory]= useState([]);
+  const [size, setSize] = useState("");
 
   useEffect(() => { 
 fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
@@ -43,16 +44,18 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
   return response.json();
   } 
   else {
-  throw new Error('Couldnt get any data');
+  throw new Error('Błąd sieci!');
   }
   })
-  .then(
-    data => setProductByCategory(data) )
-
+  .then(data => {
+    setProductByCategory(data);
+    const product = data[0];
+    setSize(product.description);
+  })
+    
   .catch(error => {
       console.error('Wystąpił błąd:', error);
   });
-  console.log(selectedSize)
 },[categoryId]);
 
   // const filteredPapers = getPapersByCategory(categoryId);
@@ -63,9 +66,10 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
   //   showFrames = true;
   // }
 
-  const [selectedSize, setSelectedSize] = useState(
-    filteredProducts.find((product) => product.isDefault)
-  );
+  // const [size, setSize] = useState(
+  //   filteredProducts.find((product) => product.isDefault)
+  // );
+
   // const [selectedPaper, setSelectedPaper] = useState(
   //   filteredPapers.find((paper) => paper.isDefault)
   // );
@@ -76,15 +80,15 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
   //   filteredFrames.find((frame) => frame.isDefault)
   // );
 
-  const basketItem = {
-    size: selectedSize,
-  //   paper: selectedPaper.name,
-  //   crop: selectedCrop.name,
-  //   frame: selectedFrame.name,
-  };
+  // const basketItem = {
+  //   size: selectedSize,
+  // //   paper: selectedPaper.name,
+  // //   crop: selectedCrop.name,
+  // //   frame: selectedFrame.name,
+  // };
 
   const handleSizeChange = (event) => {
-    setSelectedSize(filteredProducts.Size);
+    setSize(event.target.value);
   };
   // const handlePaperChange = (event) => {
   //   setSelectedPaper(filteredPapers[event.target.value - 1]);
@@ -104,7 +108,20 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
   //   sessionStorage.setItem("Basket", JSON.stringify(storageBasket));
   // };
   // console.log(JSON.parse(sessionStorage.getItem("Basket")));
-  
+
+  const AddToBasket = () => {
+    let basketItem = {
+      size: size,
+    };
+    let storageBasket = JSON.parse(sessionStorage.getItem("Basket"));
+    if (!storageBasket) {
+      storageBasket = [];
+    }
+    storageBasket.push(basketItem);
+    console.log(storageBasket);
+    sessionStorage.setItem("Basket", JSON.stringify(storageBasket));
+  };
+
   return (
     
     <div className="text-center">
@@ -113,13 +130,11 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
         <label htmlFor="odbitki">Wybierz produkt:</label>
         <select
           className="form-select select-color"
-          id="produkt"
-          name="size"
-          value={selectedSize}
           onChange={handleSizeChange}
+          value={size}
         >
-          {filteredProducts.map((product) => (
-            <option key={product.Id} value={product.Id}>
+          {filteredProducts.map((product, index) => (
+            <option key={index} value={product.description}>
               {product.description}
             </option>
           ))}
@@ -173,10 +188,10 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
               ))}
             </select>
           </>
-        )}
-        <div className="btn btn-info p-1 mt-2" onClick={AddToBasket}>
+        )}*/}
+        <div className="btn btn-success p-2 mt-2" onClick={AddToBasket}>
           Dodaj do koszyka
-        </div> */}
+        </div>
       </form>
     </div>
     

@@ -39,7 +39,7 @@ const Basket = () => {
               <Col>{index + 1} </Col>
               <Col className="col-9 d-flex justify-items-left">
                 {basketItem.size}<br/>
-                [{basketItem.paper} {basketItem.crop} {basketItem.frame}]
+                {/* [{basketItem.paper} {basketItem.crop} {basketItem.frame}] */}
               </Col>
               <Col className="col-2 text-center">
                 <div

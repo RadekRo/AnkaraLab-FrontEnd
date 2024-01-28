@@ -10,6 +10,13 @@ import frames from "../TempData/FrameData";
 const Products = () => {
   // pobranie parametrów z adresu w przegladarce
   const { categoryId } = useParams();
+
+  let selectAnnoucement = "Wybierz rozmiar:";
+
+  if (categoryId === '3' || categoryId === '5' || categoryId === '6') {
+    selectAnnoucement = "Wybierz rodzaj:";
+  }  
+
   // symulacja endpointu na backendzie
   // const getProductByCategory = (id) => {
   //   return products.filter((product) => product.categoryId === parseInt(id));
@@ -123,16 +130,16 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
     sessionStorage.setItem("Basket", JSON.stringify(storageBasket));
 
     setShowConfirmation(true);
-    setTimeout(() => setShowConfirmation(false), 3000);
+    setTimeout(() => setShowConfirmation(false), 2000);
   };
 
   return (
     
     <div className="text-center">
-      <h1>Products</h1>
-      {showConfirmation && <h4 className="bg-info rounded p-2">Produkt dodany do koszyka!</h4>}
+      <h4 className="bg-secondary p-2 rounded text-white">Konfiguruj produkt:</h4>
+      {showConfirmation && <p className="bg-success rounded p-2 text-white">Produkt dodany do koszyka!</p>}
       <form className="form-product">
-        <label htmlFor="odbitki">Wybierz produkt:</label>
+        <label htmlFor="odbitki">{selectAnnoucement}</label>
         <select
           className="form-select select-color"
           onChange={handleSizeChange}

@@ -38,7 +38,7 @@ const Basket = () => {
             <Row className="m-1 border-bottom p-1 pb-2" key={index}>
               <Col>{index + 1} </Col>
               <Col className="col-9 d-flex justify-items-left">
-                {basketItem.size}<br/>
+                {basketItem.description}<br/>
                 {/* [{basketItem.paper} {basketItem.crop} {basketItem.frame}] */}
               </Col>
               <Col className="col-2 text-center">

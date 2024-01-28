@@ -5,7 +5,7 @@ import { useState,useEffect } from "react";
 import papers from "../TempData/PaperData";
 import crops from "../TempData/CropData";
 import frames from "../TempData/FrameData";
-// import "./Products.css";
+import "./Products.css";
 
 const Products = () => {
   // pobranie parametrów z adresu w przegladarce
@@ -42,6 +42,7 @@ const Products = () => {
   const [filteredProducts, setProductByCategory]= useState([]);
   const [size, setSize] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [confirmationInDOM, setConfirmationInDOM] = useState(false);
 
   useEffect(() => { 
 fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
@@ -129,15 +130,19 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
     console.log(storageBasket);
     sessionStorage.setItem("Basket", JSON.stringify(storageBasket));
 
+    setConfirmationInDOM(true);
     setShowConfirmation(true);
-    setTimeout(() => setShowConfirmation(false), 2000);
+    setTimeout(() => {
+    setShowConfirmation(false);
+    setTimeout(() => setConfirmationInDOM(false), 3000);
+  }, 100);
   };
 
   return (
     
     <div className="text-center">
-      <h4 className="bg-secondary p-2 rounded text-white">Konfiguruj produkt:</h4>
-      {showConfirmation && <p className="bg-success rounded p-2 text-white">Produkt dodany do koszyka!</p>}
+      <h4 className="bg-dark p-2 rounded text-white">Konfiguruj produkt:</h4>
+      {confirmationInDOM && <p className={`confirmation ${showConfirmation ? '' : 'hide'} bg-success p-2 text-white rounded`}>Produkt dodany do koszyka!</p>}
       <form className="form-product">
         <label htmlFor="odbitki">{selectAnnoucement}</label>
         <select

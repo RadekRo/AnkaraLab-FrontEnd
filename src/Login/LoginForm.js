@@ -29,7 +29,7 @@ const LoginForm = ({ handleChange, handleSubmit, loginAccepted }) => {
       
     { (!loginAccepted) && (
         <div className="d-flex align-items-center justify-content-center mt-2">
-            <p className="bg-danger text-white ps-4 pe-4 pt-2 pb-2"><span className="text-warning">Błędny email lub hasło.</span><br/>Spróbuj ponownie lub zarejestruj się!</p>
+            <p className="bg-danger text-white ps-4 pe-4 pt-2 pb-2 rounded"><span className="text-warning">Błędny email lub hasło.</span><br/>Spróbuj ponownie lub zarejestruj się!</p>
         </div>
     )}
         <button type="submit" className="btn btn-success mt-4">Loguj</button>

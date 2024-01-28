@@ -6,3 +6,14 @@
     background-color: rgb(13, 125, 125);
     color: whitesmoke;
 }
+
+.confirmation {
+  opacity: 1;
+  background-color: green;
+  transition: opacity 3s ease-out;
+}
+
+.confirmation.hide {
+  opacity: 0;
+  transition: opacity 3s ease-out;
+}

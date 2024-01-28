@@ -34,6 +34,7 @@ const Products = () => {
   // symulacja fetcha
   const [filteredProducts, setProductByCategory]= useState([]);
   const [size, setSize] = useState("");
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   useEffect(() => { 
 fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
@@ -120,12 +121,16 @@ fetch(`https://localhost:7162/api/products/byCategory/${categoryId}`, {
     storageBasket.push(basketItem);
     console.log(storageBasket);
     sessionStorage.setItem("Basket", JSON.stringify(storageBasket));
+
+    setShowConfirmation(true);
+    setTimeout(() => setShowConfirmation(false), 3000);
   };
 
   return (
     
     <div className="text-center">
       <h1>Products</h1>
+      {showConfirmation && <h4 className="bg-info rounded p-2">Produkt dodany do koszyka!</h4>}
       <form className="form-product">
         <label htmlFor="odbitki">Wybierz produkt:</label>
         <select

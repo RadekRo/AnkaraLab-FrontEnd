@@ -54,11 +54,13 @@ const Basket = () => {
           ))}
         </div>
       )}
+      {storedBasket.length > 0 && ( 
       <div>
       <Link to="/checkout">
           <button>checkout</button>
         </Link>
       </div>
+      )}
     </div>
   );
 };

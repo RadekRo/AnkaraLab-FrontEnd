@@ -16,7 +16,7 @@ return(
               <Col>{index + 1} </Col>
               <Col className="col-9 d-flex justify-items-center">
                 {basketItem.size}<br/>
-                [{basketItem.paper} {basketItem.crop} {basketItem.frame}]
+                {/* [{basketItem.paper} {basketItem.crop} {basketItem.frame}] */}
               </Col>
             </Row>
             ))}

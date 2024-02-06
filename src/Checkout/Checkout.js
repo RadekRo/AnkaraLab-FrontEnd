@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Row, Col } from "react-bootstrap";
+import { Form } from 'react-bootstrap';
 
 //const shippingAddress = () => {
     //const fetchedData = [data, setData] = useState();
@@ -7,6 +8,85 @@ import { Row, Col } from "react-bootstrap";
 const Checkout = () => {
     const storedBasket = JSON.parse(sessionStorage.getItem("Basket"));
     const userData = JSON.parse(localStorage.getItem("User"));
+    const [formData, setFormData] = useState({
+      street: "",
+      localNumber: "",
+      city:"",
+      zipCode: ""
+    });
+
+    const handleChange = ({ target: { name, value } }) => {
+      setFormData({...formData, [name]: value });
+    };
+
+    const handleSubmit = (event) => {
+    
+      event.preventDefault();
+      console.log(formData)
+      };
+
+      // fetch('https://localhost:7162/api/client/addAddress', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify(formData),
+      // })
+      // .then(response => {
+      //   if (response.ok) {
+      //     return response.json();
+
+    const renderAddressForm = () => (
+        <div className="Register border rounded shadow bg-light mt-4 p-3">
+            <form className='none' onSubmit={handleSubmit}>
+              <h3>Podaj adres do wysyłki</h3>
+              <div>
+                <Form.Group controlId="Street" className='mb-2'>
+                  <Form.Label>Ulica:</Form.Label>
+                  <Form.Control 
+                    type="text"
+                    name="street" 
+                    placeholder="Podaj nazwę ulicy" 
+                    onChange={handleChange}
+                    required />
+                </Form.Group>
+                <Form.Group controlId="LocalNumber" className='mb-2'>
+                  <Form.Label>Numer lokalu:</Form.Label>
+                  <Form.Control 
+                    type="text"
+                    name="localNumber" 
+                    placeholder="Podaj numer lokalu" 
+                    onChange={handleChange}
+                    required />
+                </Form.Group>
+              </div>
+              <div>
+                <Form.Group controlId="City" className='mb-2'>
+                  <Form.Label>Miasto:</Form.Label>
+                  <Form.Control 
+                    type="text"
+                    name="city" 
+                    placeholder="Podaj nazwę miejscowości" 
+                    onChange={handleChange}
+                    required />
+                  </Form.Group>
+              </div>
+              <div>
+                <Form.Group controlId="ZipCode" className='mb-2'>
+                  <Form.Label>Kod pocztowy:</Form.Label>
+                  <Form.Control 
+                    type="text"
+                    name="zipCode" 
+                    placeholder="Podaj kod pocztowy" 
+                    onChange={handleChange}
+                    required />
+                  </Form.Group>
+              </div>
+              <button className="btn btn-success mt-4" type="submit">Przejdź do płatności</button>
+            </form>
+        </div>
+      );     
+
 return(
     <div>
         <p className="justify-items-center">Lista twoich zakupów kolego:</p> 
@@ -22,9 +102,11 @@ return(
             ))}
         </div>
         {console.log(userData)}
-        Tu będą dane do wysyłki+++
-        Tu się też coś wstawi
+        <div>
+        {renderAddressForm()}
+        </div>
     </div>
+    
 )
 }
 

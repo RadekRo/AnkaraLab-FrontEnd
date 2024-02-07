@@ -64,7 +64,7 @@ const Register = () => {
       .then(response => {
         if (response.ok) {
           setIsUserRegistered(true);
-          return response.json();
+         // return response.json();
         } else {
           setErrors({
             ...errors,

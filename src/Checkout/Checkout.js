@@ -8,11 +8,13 @@ import { Form } from 'react-bootstrap';
 const Checkout = () => {
     const storedBasket = JSON.parse(sessionStorage.getItem("Basket"));
     const userData = JSON.parse(localStorage.getItem("User"));
+    const currentUserId = userData.userId;
     const [formData, setFormData] = useState({
       street: "",
       localNumber: "",
       city:"",
-      zipCode: ""
+      zipCode: "",
+      name: ""
     });
 
     const handleChange = ({ target: { name, value } }) => {
@@ -24,17 +26,21 @@ const Checkout = () => {
       event.preventDefault();
       console.log(formData)
       };
-
-      // fetch('https://localhost:7162/api/client/addAddress', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(formData),
-      // })
-      // .then(response => {
-      //   if (response.ok) {
-      //     return response.json();
+      fetch(`https://localhost:7162/api/client/shippingData/${currentUserId}`, {
+        method: 'GET'
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+      })
+      .then(data => {
+        console.log(data.name);
+        setFormData((prevFormData) => ({
+          ...prevFormData, 
+          name: data.name
+        }));
+      })
 
     const renderAddressForm = () => (
         <div className="Register border rounded shadow bg-light mt-4 p-3">
@@ -46,7 +52,7 @@ const Checkout = () => {
                   <Form.Control 
                     type="text"
                     name="street" 
-                    placeholder="Podaj nazwę ulicy" 
+                    placeholder={formData.street}
                     onChange={handleChange}
                     required />
                 </Form.Group>
@@ -55,7 +61,7 @@ const Checkout = () => {
                   <Form.Control 
                     type="text"
                     name="localNumber" 
-                    placeholder="Podaj numer lokalu" 
+                    placeholder={formData.localNumber}
                     onChange={handleChange}
                     required />
                 </Form.Group>
@@ -66,7 +72,7 @@ const Checkout = () => {
                   <Form.Control 
                     type="text"
                     name="city" 
-                    placeholder="Podaj nazwę miejscowości" 
+                    placeholder={formData.city}
                     onChange={handleChange}
                     required />
                   </Form.Group>
@@ -77,7 +83,7 @@ const Checkout = () => {
                   <Form.Control 
                     type="text"
                     name="zipCode" 
-                    placeholder="Podaj kod pocztowy" 
+                    placeholder={formData.zipCode}
                     onChange={handleChange}
                     required />
                   </Form.Group>

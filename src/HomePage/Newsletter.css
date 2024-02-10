@@ -1,3 +1,7 @@
 .Newsletter {
     background-color: #bebdbd;
 }
+
+input:focus {
+    outline: none;
+}

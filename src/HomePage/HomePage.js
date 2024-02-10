@@ -1,10 +1,10 @@
 import Categories from "../Data/Categories";
-import Promotion from "../Promotion/Promotion";
+import Carousel from "./Carousel";
 
 const HomePage = () => {
   return (
     <div>
-      <Promotion />
+      <Carousel />
       <Categories />
     </div>
   );

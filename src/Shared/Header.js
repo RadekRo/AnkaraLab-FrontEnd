@@ -12,7 +12,7 @@ const Header = () => {
         <Link to="/login" className="btn btn-success m-1">
           Logowanie
         </Link>
-        <Link to="/register" className="btn btn-outline-primary m-1">
+        <Link to="/register" className="btn btn-info m-1">
           Rejestracja
         </Link>
         <Link className="btn btn-secondary m-1" to="/basket">

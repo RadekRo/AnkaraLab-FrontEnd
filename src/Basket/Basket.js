@@ -28,7 +28,7 @@ const Basket = () => {
         
         <div>
           <div>
-          <img src="/images/shopping-basket.png" alt="basket-logo" />
+          <img src="/images/basket-empty.jpg" alt="basket-logo" />
           </div>
           Twój koszyk jest pusty
         </div>
@@ -57,7 +57,7 @@ const Basket = () => {
       {storedBasket.length > 0 && ( 
       <div>
       <Link to="/checkout">
-          <button>checkout</button>
+          <button className="btn btn-large btn-success">Przejdź do kasy</button>
         </Link>
       </div>
       )}

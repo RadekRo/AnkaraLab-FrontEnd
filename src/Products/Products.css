@@ -3,8 +3,8 @@
     margin: 0 auto;
 }
 .select-color{
-    background-color: rgb(13, 125, 125);
-    color: whitesmoke;
+    background-color: #E3E3E3;
+    color: rgb(11, 11, 11);
 }
 
 .confirmation {
@@ -16,4 +16,9 @@
 .confirmation.hide {
   opacity: 0;
   transition: opacity 3s ease-out;
+}
+
+.annoucement {
+  max-width: 250px;
+  margin: 0 auto;
 }

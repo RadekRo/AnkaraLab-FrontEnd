@@ -18,6 +18,9 @@ const Header = () => {
         <Link className="btn btn-secondary m-1" to="/basket">
           Koszyk
         </Link>
+        <Link className="btn btn-dark m-1" to="/faq">
+          Faq
+        </Link>
       </div>
     </div>
   );

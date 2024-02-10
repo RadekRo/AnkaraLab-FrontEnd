@@ -7,6 +7,7 @@ import Header from "./Shared/Header";
 import Basket from "./Basket/Basket";
 import Register from "./Register/Register";
 import Checkout from "./Checkout/Checkout";
+import Faq from "./Faq/Faq";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/basket" element={<Basket />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/faq" element={<Faq />} />
         </Routes>
       </Router>
     </div>

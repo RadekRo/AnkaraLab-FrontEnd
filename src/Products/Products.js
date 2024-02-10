@@ -1,10 +1,12 @@
 import { useParams } from "react-router";
 import products from "../TempData/ProductData";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import papers from "../TempData/PaperData";
 import crops from "../TempData/CropData";
 import frames from "../TempData/FrameData";
+import { Button, ButtonGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./Products.css";
 
 const Products = () => {
@@ -21,6 +23,7 @@ const Products = () => {
   const [filteredProducts, setProductByCategory]= useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [confirmationInDOM, setConfirmationInDOM] = useState(false);
+  const [categories, setCategories] = useState([]);
   const [basketItem, setBasketItem] = useState({
     description: "",
       size: "",
@@ -52,8 +55,7 @@ const Products = () => {
     .then(data => {
       setProductByCategory(data);
       const product = data[0];
-      console.log(data);  
-      setBasketItem(prevState => ({ ...prevState, size: product.size}));
+      setBasketItem(prevState => ({ ...prevState, description: product.description, size: product.size}));
     })
       
     .catch(error => {
@@ -61,7 +63,25 @@ const Products = () => {
     });
   },[categoryId]);
 
-
+  useEffect(() => { 
+    fetch('https://localhost:7162/api/category', {
+      method: 'GET'
+    })
+      .then(response => {
+      if (response.ok) {
+      return response.json();
+      } 
+      else {
+      throw new Error('Couldnt get any data');
+      }
+      })
+      .then(
+        data => setCategories(data) )
+    
+      .catch(error => {
+          console.error('Wystąpił błąd:', error);
+      });
+    },[]);
  
   const AddToBasket = () => {
     let storageBasket = JSON.parse(sessionStorage.getItem("Basket"));
@@ -79,16 +99,27 @@ const Products = () => {
     setTimeout(() => setConfirmationInDOM(false), 3000);
   }, 100);
   };
-
   return (
     
     <div className="text-center">
-      <h4 className="bg-dark p-2 rounded text-white">Konfiguruj produkt:</h4>
-      {confirmationInDOM && <p className={`confirmation ${showConfirmation ? '' : 'hide'} bg-success p-2 text-white rounded`}>Produkt dodany do koszyka!</p>}
+      <h5 className="bg-dark shadow p-2 rounded text-white">Konfiguruj produkt:</h5>
+      <ButtonGroup aria-label="Basic example" className='mt-2 mb-2'>
+        {categories.map((category) => 
+          (
+            <Button key={category.id} variant={category.id === Number(categoryId) ? "dark" : "secondary"}>
+              <Link to={`/category/${category.id}`} className='text-decoration-none text-white'>
+                {category.name}
+              </Link>
+            </Button>
+            )
+        )}
+      </ButtonGroup>
+      {confirmationInDOM && <p className={`confirmation ${showConfirmation ? '' : 'hide'} bg-success p-2 text-white rounded annoucement`}>
+        Produkt dodany do koszyka!</p>}
       <form className="form-product">
-        <label htmlFor="odbitki">{selectAnnoucement}</label>
+        <label htmlFor="odbitki"><strong>{selectAnnoucement}</strong></label>
         <select
-          className="form-select select-color"
+          className="form-select select-color text-center mt-1"
           onChange={handleSizeChange}
         >
           {filteredProducts.map((product, index) => (

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./Categories.css";
 
 const Categories = () => {
 
@@ -24,10 +25,11 @@ fetch('https://localhost:7162/api/category', {
       console.error('Wystąpił błąd:', error);
   });
 },[]);
-return( 
+
+return ( 
 <div>
   {categories.map((category) => (
-  <div className="btn m-1" key={category.id}>
+  <div className="btn m-3 highlight" key={category.id}>
     <Link to={`/category/${category.id}`} className="text-decoration-none text-dark">
       <img src={`/images/categories/${category.id}.jpg`} alt=" " /> 
     </Link>

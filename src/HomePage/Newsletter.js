@@ -1,6 +1,8 @@
 import './Newsletter.css';
 import React, { useState } from 'react';
 
+const API_URL = 'https://localhost:7162/api/newsletter';
+
 const Newsletter = () => {
   const [email, setEmail] = useState('');
 
@@ -15,7 +17,25 @@ const Newsletter = () => {
       return;
     }
 
-    alert(email);
+    console.log(JSON.stringify(email));
+
+    fetch(API_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({email})
+    })
+        .then(response => {
+            if (response.ok) {
+                alert('You have been added to the newsletter');
+            } else {
+                alert('Error occured. Email not added to the newsletter');
+            }
+        })
+        .catch(error => {
+          console.error('Wystąpił błąd:', error);
+        });
   };
 
   const emailValidation = (email) => {

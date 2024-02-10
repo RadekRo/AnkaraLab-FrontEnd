@@ -55,8 +55,7 @@ const Products = () => {
     .then(data => {
       setProductByCategory(data);
       const product = data[0];
-      console.log(data);  
-      setBasketItem(prevState => ({ ...prevState, size: product.size}));
+      setBasketItem(prevState => ({ ...prevState, description: product.description, size: product.size}));
     })
       
     .catch(error => {
@@ -115,11 +114,12 @@ const Products = () => {
             )
         )}
       </ButtonGroup>
-      {confirmationInDOM && <p className={`confirmation ${showConfirmation ? '' : 'hide'} bg-success p-2 text-white rounded annoucement`}>Produkt dodany do koszyka!</p>}
+      {confirmationInDOM && <p className={`confirmation ${showConfirmation ? '' : 'hide'} bg-success p-2 text-white rounded annoucement`}>
+        Produkt dodany do koszyka!</p>}
       <form className="form-product">
-        <label htmlFor="odbitki">{selectAnnoucement}</label>
+        <label htmlFor="odbitki"><strong>{selectAnnoucement}</strong></label>
         <select
-          className="form-select select-color text-center"
+          className="form-select select-color text-center mt-1"
           onChange={handleSizeChange}
         >
           {filteredProducts.map((product, index) => (

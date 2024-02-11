@@ -6,7 +6,7 @@ import papers from "../TempData/PaperData";
 import crops from "../TempData/CropData";
 import frames from "../TempData/FrameData";
 import { Button, ButtonGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Products.css";
 
 const Products = () => {
@@ -99,6 +99,9 @@ const Products = () => {
     setTimeout(() => setConfirmationInDOM(false), 3000);
   }, 100);
   };
+
+  const navigate = useNavigate();
+
   return (
     
     <div className="text-center">
@@ -106,10 +109,11 @@ const Products = () => {
       <ButtonGroup aria-label="Basic example" className='mt-2 mb-2'>
         {categories.map((category) => 
           (
-            <Button key={category.id} variant={category.id === Number(categoryId) ? "dark" : "secondary"}>
-              <Link to={`/category/${category.id}`} className='text-decoration-none text-white'>
+            <Button 
+              key={category.id} 
+              variant={category.id === Number(categoryId) ? "dark" : "secondary"}
+              onClick={() => navigate(`/category/${category.id}`)}>
                 {category.name}
-              </Link>
             </Button>
             )
         )}

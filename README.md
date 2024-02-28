@@ -2,7 +2,7 @@
 Welcome to the official repository for the AnkaraLab FrontEnd application. AnkaraLab offers a sophisticated digital platform tailored for digital printing services, combining ease of use with a powerful feature set to transform the way digital printing houses operate.
 
 ## Live Application
-Access the current (old) live version of AnkaraLab through the following link: (http://www.ankaralab.com)[AnkaraLab].
+Access the current (old) live version of AnkaraLab through the following link: [AnkaraLab](http://www.ankaralab.com).
 
 ## Technology Stack
 This application is engineered using the React framework, incorporating HTML and CSS for a seamless and responsive user experience. Our choice of React is driven by its component-based architecture, allowing for efficient development and maintenance of the application.

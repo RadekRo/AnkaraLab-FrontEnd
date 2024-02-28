@@ -1,12 +1,4 @@
 # AnkaraLab-FrontEnd
-
-FrontEnd commercial application to be used under: https://www.ankaralab.com  
-Created using React with HTML and CSS elements.
-
-## About
-AnkaraLab is an application created for digital printing house. It covers user accounts and products exposition with a possibility to order them as well. The Front-End application is firmly connected with the Back-End WebAPI which covers all the necessary connections with Microsoft SQL Server.
-
-# AnkaraLab-FrontEnd
 Welcome to the official repository for the AnkaraLab FrontEnd application. AnkaraLab offers a sophisticated digital platform tailored for digital printing services, combining ease of use with a powerful feature set to transform the way digital printing houses operate.
 
 ## Live Application
